@@ -23,7 +23,7 @@
     box-shadow: 1em 1em 5em;
     padding: 1em;
     width:50%;
-    min-height: 25em;
+    height:auto;
 }
 
 @media only screen and (max-width:500px) {

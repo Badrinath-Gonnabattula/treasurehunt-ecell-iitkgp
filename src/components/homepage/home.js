@@ -12,6 +12,7 @@ import PlaynowCard from './playnowcard.js'
 import RulesCard from './RulesCard.js';
 import ResultsCard from './ResultsCard'
 import { Typography } from '@material-ui/core';
+import SignUpForm from '../SignUpForm/SignUpForm'
 
 import playimage from './playimg.png';
 
@@ -78,8 +79,7 @@ export default function Home() {
       >
         <Fade in={open}>
           <div className='paper'>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
+            <SignUpForm />
           </div>
         </Fade>
       </Modal>
