@@ -1,7 +1,9 @@
+import Home from './components/homepage/home'
+
 function App() {
   return (
     <div className="App">
-      Welcome to the TressureHuntPortal
+      <Home />
     </div>
   );
 }
