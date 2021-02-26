@@ -16,6 +16,9 @@ import SignUpForm from '../SignUpForm/SignUpForm'
 
 import playimage from './playimg.png';
 
+import CancelIcon from '@material-ui/icons/Cancel';
+import IconButton from '@material-ui/core/IconButton';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  close:{
+    float:'right',
+  }
 }));
 
 export default function Home() {
@@ -79,6 +85,9 @@ export default function Home() {
       >
         <Fade in={open}>
           <div className='paper'>
+          <IconButton aria-label="delete" className={classes.close} size="large">
+            <CancelIcon fontSize="large"/>
+          </IconButton>
             <SignUpForm />
           </div>
         </Fade>

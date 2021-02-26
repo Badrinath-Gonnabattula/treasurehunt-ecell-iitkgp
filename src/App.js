@@ -1,4 +1,4 @@
-import Questions from './components/questionspage/Questions';
+import Questions from './components/QuestionsPage/Questions';
 import Home from './components/homepage/home'
 import {
   BrowserRouter as Router,
