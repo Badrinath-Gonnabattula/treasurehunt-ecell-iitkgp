@@ -15,8 +15,6 @@ body {
     width: 10em;
     height: 10em;
     background: grey;
-    /* border-radius:50%; */
-    /* background-image: url(./results.jpg); */
     background-size: cover;
     background-position: center center;
     box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);

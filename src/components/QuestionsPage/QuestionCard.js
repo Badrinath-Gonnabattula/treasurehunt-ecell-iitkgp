@@ -14,6 +14,8 @@ import "../../assets/hint.css";
 function QuestionCard(props) {
     // obj=props
 
+    const [Resp, setResp] = useState("");
+
     
     const cards = [
         {
@@ -24,7 +26,7 @@ function QuestionCard(props) {
           image: props.image,
           imageRatio: 784 / 1016,
           ans: props.ans,
-          submitted: "",
+          submitted:Resp,
          
         }];
     
@@ -56,6 +58,7 @@ function QuestionCard(props) {
                           shrink: true
                         }}
                         variant="outlined"
+                        onChange={e => setResp(e.target.value)}
                       />
                       <Button
                         variant="contained"
