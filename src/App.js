@@ -1,8 +1,8 @@
+import Questions from './components/QuestionsPage/Questions';
+
 function App() {
   return (
-    <div className="App">
-      Welcome to the TressureHuntPortal
-    </div>
+    <Questions/>
   );
 }
 
