@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useSpring, animated } from "react-spring";
 import Hint from './hint.js';
 import ReactParticles from "react-particles-js";
-// import particlesConfig from "./particles-config.js";
+import particlesConfig from "./particles-config.js";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -32,10 +32,10 @@ function QuestionCard(props) {
     
     return (
       <div className="main">
-        {/* <Particles> */}
+        <Particles>
           <Hero>
             <div className="container">
-              <Info />
+              {/* <Info /> */}
               <div className="row">
                 {cards.map((card, i) => (
                   <div className="column">
@@ -76,7 +76,7 @@ function QuestionCard(props) {
               </div>
             </div>
           </Hero>
-        {/* </Particles> */}
+        </Particles>
       </div>
     );
   }
@@ -151,7 +151,24 @@ function QuestionCard(props) {
     );
   }
   
-
+  function Particles({ children }) {
+    return (
+      <div style={{ position: "relative" }}>
+        <ReactParticles
+          params={particlesConfig}
+          style={{
+            position: "absolute",
+            zIndex: 1,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }}
+        />
+        {children && <div style={{ position: "relative" }}>{children}</div>}
+      </div>
+    );
+  }
   
   function Hero({ children }) {
     return (

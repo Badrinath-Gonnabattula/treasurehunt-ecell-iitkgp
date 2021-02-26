@@ -12,8 +12,8 @@ body {
   }
   
   .hint {
-    width: 10em;
-    height: 10em;
+    width: 6em;
+    height: 4em;
     background: grey;
     background-size: cover;
     background-position: center center;

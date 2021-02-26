@@ -1,6 +1,7 @@
 import React from "react";
 import {useEffect,useState} from "react";
 import Particles from 'react-particles-js';
+import QuestionCard from './QuestionCard';
 import '../../assets/particleCss.css';
 
 
@@ -14,6 +15,7 @@ const Questions = () =>{
 
   return (
     <div>
+       {/* <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/> */}
         <Particles id="particles-js"
           params = {{
             "particles": {
@@ -120,10 +122,15 @@ const Questions = () =>{
             
               "retina_detect": true
           }}
-        />
+        >
+         
+        </Particles>
+        <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
         
     </div>
+    
 );
 }
 
 export default Questions;
+
