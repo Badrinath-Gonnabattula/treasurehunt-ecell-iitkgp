@@ -59,7 +59,7 @@ export default function Home() {
         <Grid item xs={12}>
           <Grid container justify="center" spacing={0}>
             <div className='heading-main'>
-              <h1>Tressure Hunt</h1>
+              <h2>Tressure Hunt</h2>
             </div>
           </Grid>
           <Grid container justify="center" spacing={0} className='cards-container'>
