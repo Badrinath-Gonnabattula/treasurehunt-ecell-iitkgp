@@ -13,73 +13,43 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './SignInForm.css';
+import {Redirect} from 'react-router';
+
 
 const axios = require('axios');
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     marginTop: theme.spacing(8),
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
-//   form: {
-//     width: '100%', // Fix IE 11 issue.
-//     marginTop: theme.spacing(3),
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2),
-//   },
-// }));
-
-
-
-export default function SignInForm() {
+export default function SignInForm(props) {
   // const classes = useStyles();
 
-  const [userinfo,setUserinfo] = useState({"name":'',"email":'',"loggedin":false});
-  
-  const handleemail = (e) => {
-    setUserinfo({...userinfo,"email":e.target.value});
-  }
+  const [userinfo,setUserinfo] = useState({"name":'',"email":'',"password":'',"loggedin":false,"details":null});
 
   const handlename = (e) => {
     setUserinfo({...userinfo,"name":e.target.value});
   }
 
+  const handleemail = (e) => {
+    setUserinfo({...userinfo,"email":e.target.value});
+  }
+
+  const handlepassword = (e) => {
+    setUserinfo({...userinfo,"password":e.target.value});
+  }
+
   const handlelogin = (e) => {
     e.preventDefault();
     console.log(userinfo);
-    async function checkuser(){
-      try {
-        const response = await axios.post('https://node.ecell-iitkgp.org/hunt/login',userinfo);
-        setUserinfo({...userinfo,"loggedin":response.data.success});
+    axios.post('https://node.ecell-iitkgp.org/hunt/login',{"email":userinfo.email,"password":userinfo.password})
+      .then((response) => {
+        setUserinfo({...userinfo,"loggedin":response.data.success,"details":response.data.details});
         console.log(userinfo);
-
-      }
-      catch(error){
+        console.log(response.data);
+        if(response.data.success){
+          props.onlog();
+        }
+      })
+      .catch((error) => {
         console.log(error);
-      }
-    }
-    checkuser();
-    setUserinfo({"name":'',"email":'',"loggedin":false});
+      })
   }
 
   return (
@@ -96,7 +66,11 @@ export default function SignInForm() {
           <input type="text" onChange={handleemail} value={userinfo.email}></input>
           <label for="">Email</label>
         </div>
-        <a href="" onClick={handlelogin} >
+        <div class="user-box">
+          <input type="password" onChange={handlepassword} value={userinfo.password}></input>
+          <label for="">Password</label>
+        </div>
+        <a href="" onClick={handlelogin}>
           <span></span>
           <span></span>
           <span></span>

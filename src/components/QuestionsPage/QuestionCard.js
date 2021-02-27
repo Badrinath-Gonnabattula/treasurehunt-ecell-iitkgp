@@ -51,7 +51,7 @@ function QuestionCard(props) {
                       <div className="card-body">{Question.questionbody}</div>
                       {/* <Image ratio={card.imageRatio} src={card.image} /> */}
                       <div onClick = {() => setIsOpen(!isOpen)}>
-                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint" onclick = {()=>console.log("Hello")}> Hint</Hint>
+                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint"> Hint</Hint>
                       </div>
                       <Popup isOpen={isOpen}><Image ratio={cards[0].imageRatio} src={Question.hint} /></Popup>
                       <TextField

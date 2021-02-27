@@ -51,7 +51,7 @@ body {
 
 @media screen and (max-width: 760px) {
   .hint {
-    width: 4em;
+    width: 7em;
     height: 4em;
     background: rgb(214, 212, 212);
     background-size: cover;

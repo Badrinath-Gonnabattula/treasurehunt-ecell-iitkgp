@@ -39,19 +39,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Home() {
+export default function Home(props) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
-    console.log('opened')
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handlelog = () => {
+    props.onlog();
+  }
 
 
   return (
@@ -95,7 +98,7 @@ export default function Home() {
             <IconButton aria-label="delete" className={classes.close} onClick={handleClose} size="large">
               <CancelIcon fontSize="large" />
             </IconButton>
-            <SignInForm />
+            <SignInForm onlog={handlelog} />
           </div>
         </Fade>
       </Modal>
