@@ -26,12 +26,11 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-            <Home onlog={handlemainlog} />
+            {loggedin ? <Redirect to='/play'/> : <Home onlog={handlemainlog}/>}
         </Route>
         <Route path="/rules">
           <Rules />
         </Route>
-
         <Route path="/play">
           <Questions/>
         </Route>
