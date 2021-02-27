@@ -21,7 +21,6 @@ function App() {
         <Route path="/play">
             <Questions/>
         </Route>
-<<<<<<< Updated upstream
         <Route path="/rules">
           <Rules />
           </Route>
@@ -33,16 +32,6 @@ function App() {
         </Route>
      </Switch>
      </Router>
-||||||| constructed merge base
-      </Switch>
-    </Router>
-=======
-        <Route path="/card">
-            <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
-        </Route>
-      </Switch>
-    </Router>
->>>>>>> Stashed changes
   );
 }
 
