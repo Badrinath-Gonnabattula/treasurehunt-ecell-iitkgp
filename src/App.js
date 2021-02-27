@@ -17,8 +17,11 @@ function App() {
 
   const [loggedin,setLoggedin] = React.useState(false);
 
+  const [userdata,setUserdata] = React.useState(null);
+
   const handlemainlog = () => {
     setLoggedin(true);
+    console.log(userdata);
   }
 
   return (
@@ -26,10 +29,13 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-            {loggedin ? <Redirect to='/play'/> : <Home onlog={handlemainlog}/>}
+            {loggedin ? <Redirect to='/play'/> : <Home onlog={handlemainlog} />}
         </Route>
         <Route path="/rules">
           <Rules />
+        </Route>
+        <Route path="/board">
+            <Demo/>
         </Route>
         {loggedin ? <Route path="/play">
           <Questions/>
@@ -38,9 +44,7 @@ function App() {
         <Route path="/card">
             <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
         </Route >
-        <Route path="/board">
-            <Demo/>
-        </Route>
+        
 
      </Switch>
      </Router>
