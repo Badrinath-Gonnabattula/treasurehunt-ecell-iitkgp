@@ -14,39 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './SignInForm.css';
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     marginTop: theme.spacing(8),
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
-//   form: {
-//     width: '100%', // Fix IE 11 issue.
-//     marginTop: theme.spacing(3),
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2),
-//   },
-// }));
-
 
 
 export default function SignInForm() {
@@ -65,6 +32,10 @@ export default function SignInForm() {
         <div class="user-box">
           <input type="text"></input>
           <label for="">Email</label>
+        </div>
+        <div class="user-box">
+          <input type="password"></input>
+          <label for="">Password</label>
         </div>
         <a href="">
           <span></span>

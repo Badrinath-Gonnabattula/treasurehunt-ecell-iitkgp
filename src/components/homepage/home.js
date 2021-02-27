@@ -91,7 +91,7 @@ export default function Home() {
         <Fade in={open}>
           <div className='paper'>
             <IconButton aria-label="delete" className={classes.close} size="large">
-              <CancelIcon fontSize="large" />
+              <CancelIcon fontSize="large" onClick={()=>setOpen(!open)}/>
             </IconButton>
             <SignInForm />
           </div>
