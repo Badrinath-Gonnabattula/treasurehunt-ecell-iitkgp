@@ -16,7 +16,7 @@ import "../../assets/poppstyl.css";
 function QuestionCard(props) {
     // obj=props
   
-    const [Question, setQuestion] = useState("");
+    const [Question, setQuestion] = useState({questionbody:"",hint:[]});
     const [Resp,setResp] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 
@@ -36,8 +36,9 @@ function QuestionCard(props) {
 
     useEffect(()=>{
       setQuestion(props.question)
+      setIsOpen(false);
     },[props])
-
+    console.log(Question.hint);
     
     return (
       <div className="main">
@@ -53,7 +54,15 @@ function QuestionCard(props) {
                       <div onClick = {() => setIsOpen(!isOpen)}>
                       <Hint container justify="center" spacing={0} className='cards-container' name="Hint"> Hint</Hint>
                       </div>
-                      <Popup isOpen={isOpen}><Image ratio={cards[0].imageRatio} src={Question.hint} /></Popup>
+                      <Popup isOpen={isOpen}>
+                        <div className="flex-img-container">
+                          {Question.hint.map((e)=>(
+                            <Image ratio={cards[0].imageRatio} src={e} width={100/Question.hint.length}/>
+                          ))}
+                        </div>
+                          
+                        
+                      </Popup>
                       <TextField
                         id="outlined-full-width"
                         // ref="ans"
@@ -166,9 +175,10 @@ function QuestionCard(props) {
     );
   }
   
-  function Image({ ratio, src }) {
+  function Image({ ratio, src ,width}) {
+    width = width + '%';
     return (
-      <div className="image-container">
+      <div className="image-container" style={{width:width}}>
         <div className="image-inner-container">
           <div
             className="ratio"
