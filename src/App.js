@@ -1,4 +1,5 @@
 import Questions from './components/QuestionsPage/Questions';
+import QuestionCard from './components/QuestionsPage/QuestionCard';
 import Home from './components/homepage/home'
 import RulesCard from './components/homepage/RulesCard'
 import {
@@ -20,9 +21,12 @@ function App() {
         </Route>
         <Route path="/rules">
           <RulesCard />
+          </Route>
+        <Route path="/card">
+            <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
         </Route>
-      </Switch>
-    </Router>
+     </Switch>
+     </Router>
   );
 }
 

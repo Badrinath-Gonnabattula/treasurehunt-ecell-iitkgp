@@ -1,19 +1,31 @@
 import React from "react";
 import {useEffect,useState} from "react";
 import Particles from 'react-particles-js';
+import QuestionCard from './QuestionCard';
 import '../../assets/particleCss.css';
 
 
 const Questions = () =>{
-  const [question,setQuestion] = useState("");
-  const [answer,setAnswer] = useState("");
-
-  const submitAnswer = (e) =>{
-    setAnswer(e.value);
+  const [question,setQuestion] = useState({});
+  const onSubmit = (e,answer) =>{
+    //Handle API calls
+    console.log(answer);
+    setQuestion({
+      questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
+      hint:"",
+    })
   }
 
+  useEffect(()=>{
+    //Handle API calls
+    setQuestion({
+      questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
+      hint:"",
+    })
+  },[])
+
   return (
-    <div>
+    <div style={{height:'100%'}}>
         <Particles id="particles-js"
           params = {{
             "particles": {
@@ -120,10 +132,15 @@ const Questions = () =>{
             
               "retina_detect": true
           }}
-        />
+        >
+         
+        </Particles>
+        <QuestionCard question = {question} onSubmit = {onSubmit} />
         
     </div>
+    
 );
 }
 
 export default Questions;
+
