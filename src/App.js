@@ -8,8 +8,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Congratulations from './components/QuestionsPage/Congratulations';
-import Rules from './components/RulesPage/Rules'
+import Congratulations from './components/questionspage/Congratulations';
+import Rules from './components/rulespage/Rules'
 
 function App() {
   return (
