@@ -59,7 +59,7 @@ export default function Home() {
         <Grid item xs={12}>
           <Grid container justify="center" spacing={0}>
             <div className='heading-main'>
-              <h1>Tressure Hunt</h1>
+              <h2>Tressure Hunt</h2>
             </div>
           </Grid>
           <Grid container justify="center" spacing={0} className='cards-container'>
@@ -90,7 +90,7 @@ export default function Home() {
       >
         <Fade in={open}>
           <div className='paper'>
-            <IconButton aria-label="delete" className={classes.close} size="large">
+            <IconButton aria-label="delete" className={classes.close} onClick={handleClose} size="large">
               <CancelIcon fontSize="large" />
             </IconButton>
             <SignInForm />
