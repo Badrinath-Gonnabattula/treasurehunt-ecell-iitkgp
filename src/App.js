@@ -1,5 +1,5 @@
-import Questions from './components/QuestionsPage/Questions';
-import QuestionCard from './components/QuestionsPage/QuestionCard';
+import Questions from './components/questionspage/Questions';
+import QuestionCard from './components/questionspage/QuestionCard';
 import Home from './components/homepage/home'
 import {
   BrowserRouter as Router,
