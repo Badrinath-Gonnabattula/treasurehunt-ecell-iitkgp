@@ -18,7 +18,20 @@ function QuestionCard(props) {
   
     const [Question, setQuestion] = useState("");
     const [Resp,setResp] = useState("");
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const cards = [
+      {
+      //   id:{ props.id},
+        title:props.questiontitle,
+        description:props.question,
+
+        image: props.image,
+        imageRatio: 784 / 1016,
+        ans: props.ans,
+        submitted:Resp,
+
+      }];
     
 
     useEffect(()=>{
@@ -37,7 +50,10 @@ function QuestionCard(props) {
                       {/* <div className="card-title">{Question.title}</div> */}
                       <div className="card-body">{Question.questionbody}</div>
                       {/* <Image ratio={card.imageRatio} src={card.image} /> */}
+                      <div onClick = {() => setIsOpen(!isOpen)}>
                       <Hint container justify="center" spacing={0} className='cards-container' name="Hint" onclick = {()=>console.log("Hello")}> Hint</Hint>
+                      </div>
+                      <Popup isOpen={isOpen}><Image ratio={cards[0].imageRatio} src={Question.hint} /></Popup>
                       <TextField
                         id="outlined-full-width"
                         // ref="ans"

@@ -15,11 +15,11 @@ export default function Popup({ isOpen, children }) {
   });
   console.log(transitions);
   return (
-    <div className={cssWrapper}>
-      <animated.div className={cssOverlay} style={props} />
+    <div >
+      <animated.div  style={props} />
       {transitions.map(({ item, key, props }) =>
         item ? (
-          <animated.div key={key} className={cssContent} style={props}>
+          <animated.div key={key}  style={props}>
             <div>{children}</div>
           </animated.div>
         ) : null
@@ -41,7 +41,7 @@ const cssWrapper = css`
 
 const cssContent = css`
   position: relative;
-  z-index: 5;
+  z-index: 100000;
   border-radius: 2px;
   background: #1f283d;
   align-self: flex-start;

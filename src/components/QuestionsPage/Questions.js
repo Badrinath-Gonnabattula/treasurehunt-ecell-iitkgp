@@ -16,7 +16,7 @@ const Questions = () =>{
     console.log(answer);
     setQuestion({
       questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
-      hint:"",
+      hint:"https://6jlvz1j5q3.csb.app/undraw_upload.svg",
     })
 
     //If correct answer hide the question window and show congrats!
@@ -44,7 +44,7 @@ const Questions = () =>{
     //Handle API calls
     setQuestion({
       questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
-      hint:"",
+      hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
     })
   },[])
 

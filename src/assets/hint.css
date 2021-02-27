@@ -10,18 +10,30 @@ body {
     user-select: none;
     cursor: default;
   }
-  
+
+  /* div{
+    position:absolute;
+    z-index:100
+  } */
+
+  .pop{
+    position:fixed;
+    z-index:10000000000000
+  }
+  p{
+    font-size: 1.3em;
+  }
   .hint {
     width: 6em;
     height: 4em;
-    background: grey;
+    background: rgb(214, 212, 212);
     background-size: cover;
     background-position: center center;
     box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.5s;
     will-change: transform;
-    border: 5px solid rgb(14, 13, 13);
-    margin:2em 4em;
+    border: 5px solid rgb(82, 79, 79);
+    margin:2em auto;
     text-align: center;
   }
   
@@ -35,4 +47,43 @@ body {
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 100;
+}
+
+@media screen and (max-width: 760px) {
+  .hint {
+    width: 4em;
+    height: 4em;
+    background: rgb(214, 212, 212);
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    border: 5px solid rgb(14, 13, 13);
+    margin:2em 4em;
+    text-align: center;
+  }
+  p{
+    font-size: 1em;
+  }
+}
+
+
+@media screen and (max-width: 360px) {
+  .hint {
+    width: 3em;
+    height: 3em;
+    background: rgb(214, 212, 212);
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    border: 5px solid rgb(14, 13, 13);
+    margin:2em 4em;
+    text-align: center;
+  }
+  p{
+    font-size: 0.7em;
+  }
 }
