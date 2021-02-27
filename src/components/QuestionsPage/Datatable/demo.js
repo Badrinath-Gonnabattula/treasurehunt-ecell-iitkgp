@@ -27,6 +27,10 @@ function createData(rank, name, emailid, score) {
   return { id: counter, rank, name, emailid, score };
 }
 
+const divStyle = {
+  overflowY:'scroll'
+};
+
 function getSorting(order, orderBy) {
   return order === "desc"
     ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
@@ -168,9 +172,9 @@ let EnhancedTableToolbar = (props) => {
             </IconButton>
           </Tooltip> */}
         {/* ) : ( */}
-        <Tooltip title="Filter list">
+        {/* <Tooltip title="Filter list">
           <IconButton aria-label="Filter list" />
-        </Tooltip>
+        </Tooltip> */}
         {/* )} */}
       </div>
     </Toolbar>
@@ -231,6 +235,7 @@ const styles = (theme) => ({
   root: {
     width: 848,
     margin: "48px auto",
+    overflowY:'auto',
     overflowX: "auto"
   },
   table: {
