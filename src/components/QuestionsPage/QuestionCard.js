@@ -12,6 +12,7 @@ import Icon from "@material-ui/core/Icon";
 import "../../assets/cardstyle.css";
 import "../../assets/hint.css";
 import "../../assets/poppstyl.css";
+import Alert from '@material-ui/lab/Alert';
 
 function QuestionCard(props) {
     // obj=props
@@ -37,8 +38,8 @@ function QuestionCard(props) {
     useEffect(()=>{
       setQuestion(props.question)
       setIsOpen(false);
-    },[props])
-    console.log(Question.hint);
+      setResp('');
+    },[props.question])
     
     return (
       <div className="main">
@@ -51,8 +52,8 @@ function QuestionCard(props) {
                       {/* <div className="card-title">{Question.title}</div> */}
                       <div className="card-body">{Question.questionbody}</div>
                       {/* <Image ratio={card.imageRatio} src={card.image} /> */}
-                      <div onClick = {() => setIsOpen(!isOpen)}>
-                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint"> Hint</Hint>
+                      <div>
+                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint" callback = {setIsOpen}> Hint</Hint>
                       </div>
                       <Popup isOpen={isOpen}>
                         <div className="flex-img-container">
@@ -76,8 +77,15 @@ function QuestionCard(props) {
                           shrink: true
                         }}
                         variant="outlined"
+                        value = {Resp}
                         onChange={e => setResp(e.target.value)}
                       />
+                      <div className='WA'>
+                        <Alert severity="error" style={{marginBottom:5}}>
+                          Incorrect answer! Tumse na ho payega XD
+                        </Alert>
+                      </div>
+                      
                       <Button
                         variant="contained"
                         color="primary"

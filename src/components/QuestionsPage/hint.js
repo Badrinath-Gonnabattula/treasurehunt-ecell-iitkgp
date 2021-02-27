@@ -9,7 +9,6 @@ const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWid
 const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
 function Hint(propss) {
-  console.log(propss);
   const [isOpen, setIsOpen] = useState(false);
 
   const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 450, friction: 50 } }))
@@ -24,7 +23,7 @@ function Hint(propss) {
       onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
       onMouseLeave={() => set({ xys: [0, 0, 1] })}
       // onClick={() => setIsOpen(!isOpen)}
-      
+      onClick = {()=>propss.callback(prev=>!prev)}
       style={{ transform: props.xys.interpolate(trans)}}
     >
     <p >{propss.name}</p></animated.div>

@@ -37,25 +37,35 @@ const Questions = () =>{
       questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
       hint:["https://6jlvz1j5q3.csb.app/undraw_upload.svg","https://6jlvz1j5q3.csb.app/undraw_static_assets.svg"]
     })
+    
+    //If wrong answer
+    const alertWindow = document.getElementsByClassName('WA')[0];
+    alertWindow.style.display = "block";
+    
+    //Hide the alert after some time
+    setTimeout(()=>{
+      const alertWindow = document.getElementsByClassName('WA')[0];
+      alertWindow.style.display = "none";
+    },5000);
 
     //If correct answer hide the question window and show congrats!
     //Should be executed after getting correct answer from backend
-    let particleWindow = document.getElementById('particles-js');
-    let questioncard = document.getElementsByClassName('main');
-    setCorrect(true);
-    setCongrats(<Congratulations/>);
-    particleWindow.style.display = 'none';
-    questioncard[0].style.display = 'none';
+    // let particleWindow = document.getElementById('particles-js');
+    // let questioncard = document.getElementsByClassName('main');
+    // setCorrect(true);
+    // setCongrats(<Congratulations/>);
+    // particleWindow.style.display = 'none';
+    // questioncard[0].style.display = 'none';
 
     //Hide Congrats window after sometime
-    setTimeout(()=>{
-      setCongrats(null);
-      let particleWindow = document.getElementById('particles-js');
-      let questioncard = document.getElementsByClassName('main');
-      particleWindow.style.display = 'block';
-      questioncard[0].style.display = 'block';
-      setCorrect(true);
-    },4500);
+    // setTimeout(()=>{
+    //   setCongrats(null);
+    //   let particleWindow = document.getElementById('particles-js');
+    //   let questioncard = document.getElementsByClassName('main');
+    //   particleWindow.style.display = 'block';
+    //   questioncard[0].style.display = 'block';
+    //   setCorrect(true);
+    // },4500);
   }
 
 

@@ -88,7 +88,7 @@ body {
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .row {
@@ -121,6 +121,15 @@ body {
   width:100%;
 }
 
+@media screen and (max-width:450px){
+  .card{
+    padding-top:0;
+    padding-bottom:20px;
+  }
+  .main{
+    height:112%;
+  }
+}
 .card-title {
   font-size: 22px;
   font-weight: 600;
@@ -136,16 +145,17 @@ body {
   .card-body {
     font-size: 18px;
   }
+
 }
 
 .image-container {
   margin-top: auto;
   padding-top: 27px;
-  padding-bottom: 18px;
+  padding-bottom: 0;
 }
 @media screen and (min-width: 576px) {
   .image-container {
-    padding-bottom: 30px;
+    padding-bottom: 0;
   }
 }
 
@@ -178,6 +188,10 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.WA{
+  display: none;
 }
 /* @media screen and (max-width:550px){
   .image-container{
