@@ -78,23 +78,23 @@ const Questions = () =>{
           console.log(error);
         });
     }else{
-      console.log("wrong answer");
+      //If wrong answer
+      const alertWindow = document.getElementsByClassName('WA')[0];
+      alertWindow.style.display = "block";
+    
+    //Hide the alert after some time
+
+    setTimeout(()=>{
+      const alertWindow = document.getElementsByClassName('WA')[0];
+      alertWindow.style.display = "none";
+    },5000);
     }
     })
     .catch(function (error) {
       console.log(error);
     })
     
-    //If wrong answer
-    // const alertWindow = document.getElementsByClassName('WA')[0];
-    // alertWindow.style.display = "block";
     
-    //Hide the alert after some time
-
-    // setTimeout(()=>{
-    //   const alertWindow = document.getElementsByClassName('WA')[0];
-    //   alertWindow.style.display = "none";
-    // },5000);
 
     //If correct answer hide the question window and show congrats!
     //Should be executed after getting correct answer from backend
