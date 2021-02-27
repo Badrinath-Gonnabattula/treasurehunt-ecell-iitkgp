@@ -13,6 +13,8 @@
     "axios": "^0.21.1",
     "emotion": "10.0.5",
     "font-awesome": "^4.7.0",
+    "prop-types": "latest",
+    "classnames": "latest",
     "gsap": "^3.6.0",
     "install": "^0.13.0",
     "loadash": "^1.0.0",
