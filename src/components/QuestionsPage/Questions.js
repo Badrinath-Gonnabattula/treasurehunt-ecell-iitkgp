@@ -6,16 +6,26 @@ import '../../assets/particleCss.css';
 
 
 const Questions = () =>{
-  const [question,setQuestion] = useState("");
-  const [answer,setAnswer] = useState("");
-
-  const submitAnswer = (e) =>{
-    setAnswer(e.value);
+  const [question,setQuestion] = useState({});
+  const onSubmit = (e,answer) =>{
+    //Handle API calls
+    console.log(answer);
+    setQuestion({
+      questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
+      hint:"",
+    })
   }
 
+  useEffect(()=>{
+    //Handle API calls
+    setQuestion({
+      questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
+      hint:"",
+    })
+  },[])
+
   return (
-    <div>
-       <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
+    <div style={{height:'100%'}}>
         <Particles id="particles-js"
           params = {{
             "particles": {
@@ -125,7 +135,7 @@ const Questions = () =>{
         >
          
         </Particles>
-       
+        <QuestionCard question = {question} onSubmit = {onSubmit} />
         
     </div>
     

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useSpring, animated } from "react-spring";
 import Hint from './hint.js';
@@ -12,48 +12,37 @@ import Icon from "@material-ui/core/Icon";
 import "../../assets/cardstyle.css";
 import "../../assets/hint.css";
 import "../../assets/poppstyl.css";
-// var obj;
+
 function QuestionCard(props) {
     // obj=props
-
-    const [Resp, setResp] = useState("");
-
+  
+    const [Question, setQuestion] = useState("");
+    const [Resp,setResp] = useState("");
     const [isOpen, setIsOpen] = useState(true);
-
     
-    const cards = [
-        {
-        //   id:{ props.id},
-          title:props.questiontitle,
-          description:props.question,
-            
-          image: props.image,
-          imageRatio: 784 / 1016,
-          ans: props.ans,
-          submitted:Resp,
-         
-        }];
+
+    useEffect(()=>{
+      setQuestion(props.question)
+    },[props])
+
     
     return (
       <div className="main">
-        <Particles>
+        
           <Hero>
             <div className="container">
-              {/* <Info /> */}
               <div className="row">
-                {cards.map((card, i) => (
-                  <div className="column">
+                <div className="column">
                     <Card>
-                      <div className="card-title">{card.title}</div>
-                      <div className="card-body">{card.description}</div>
+                      {/* <div className="card-title">{Question.title}</div> */}
+                      <div className="card-body">{Question.questionbody}</div>
                       {/* <Image ratio={card.imageRatio} src={card.image} /> */}
-                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint"> Hint</Hint>
+                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint" onclick = {()=>console.log("Hello")}> Hint</Hint>
                       <TextField
                         id="outlined-full-width"
                         // ref="ans"
                         // value={cards[i].submitted}
                         label="Ans"
-                        style={{ margin: 8 }}
                         placeholder="Placeholder"
                         // helperText="Full width!"
                         // fullWidth
@@ -67,20 +56,17 @@ function QuestionCard(props) {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => {
-                          console.log(cards[i].submitted);
-                        }}
+                        onClick={(e) => props.onSubmit(e,Resp)}
                         // endIcon={<Icon>send</Icon>}
                       >
                         Submit
                       </Button>
                     </Card>
                   </div>
-                ))}
               </div>
             </div>
           </Hero>
-        </Particles>
+       
       </div>
     );
   }
@@ -155,25 +141,7 @@ function QuestionCard(props) {
     );
   }
   
-  function Particles({ children }) {
-    return (
-      <div style={{ position: "relative" }}>
-        <ReactParticles
-          params={particlesConfig}
-          style={{
-            position: "absolute",
-            zIndex: 1,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0
-          }}
-        />
-        {children && <div style={{ position: "relative" }}>{children}</div>}
-      </div>
-    );
-  }
-  
+
   function Hero({ children }) {
     return (
       <div className="hero">
@@ -201,17 +169,7 @@ function QuestionCard(props) {
     );
   }
   
-  function Info() {
-    return (
-      <div className="info">
-        {/* Springy cards from{" "} */}
-        {/* <a target="_blank" href="https://bit.ly/382KSdo">
-          divjoy.com
-        </a> */}
-        <div className="notice">(best viewed at larger screen width)</div>
-      </div>
-    );
-  }
+
   
   
     // {

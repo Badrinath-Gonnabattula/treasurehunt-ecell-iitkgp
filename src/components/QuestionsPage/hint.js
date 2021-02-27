@@ -15,7 +15,7 @@ function Hint(propss) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div>
+    <div onClick = {()=>console.log("Hello")}>
     <animated.div
       class="hint"
       onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
