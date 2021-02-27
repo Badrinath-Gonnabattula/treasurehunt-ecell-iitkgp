@@ -1,37 +1,54 @@
+import React from 'react'
 import Questions from './components/questionspage/Questions';
 import QuestionCard from './components/questionspage/QuestionCard';
+import Demo from './components/questionspage/Datatable/demo.js';
 import Home from './components/homepage/home'
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import Congratulations from './components/questionspage/Congratulations';
-import Rules from './components/rulespage/Rules'
+import Rules from './components/rulespage/Rules';
+
+import { Redirect } from 'react-router';
 
 function App() {
+
+  const [loggedin,setLoggedin] = React.useState(false);
+
+  const [userdata,setUserdata] = React.useState(null);
+
+  const handlemainlog = () => {
+    setLoggedin(true);
+    console.log(userdata);
+  }
+
   return (
+    <>
     <Router>
       <Switch>
         <Route exact path="/">
-            <Home />
-        </Route>
-        <Route path="/play">
-            <Questions/>
+            {loggedin ? <Redirect to='/play'/> : <Home onlog={handlemainlog} />}
         </Route>
         <Route path="/rules">
           <Rules />
-          </Route>
-        <Route path="/anim">
-            <Congratulations/>
         </Route>
+        <Route path="/board">
+            <Demo/>
+        </Route>
+        {loggedin ? <Route path="/play">
+          <Questions/>
+        </Route> : <h1>Oops</h1>}
+        
         <Route path="/card">
             <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
-        </Route>
+        </Route >
+        
+
      </Switch>
      </Router>
+     </>
   );
 }
 

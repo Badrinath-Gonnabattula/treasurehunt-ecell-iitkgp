@@ -8,7 +8,7 @@ import '../../assets/particleCss.css';
 const axios = require('axios').default;
 
 const Questions = () =>{
-  const [question,setQuestion] = useState({});
+  const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
   const [qid, setQid] = useState(1);
