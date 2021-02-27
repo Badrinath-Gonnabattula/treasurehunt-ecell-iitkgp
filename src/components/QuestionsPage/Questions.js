@@ -15,8 +15,8 @@ const Questions = () =>{
 
   return (
     <div>
-       {/* <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/> */}
-        {/* <Particles id="particles-js"
+       <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
+        <Particles id="particles-js"
           params = {{
             "particles": {
                 "number": {
@@ -124,8 +124,8 @@ const Questions = () =>{
           }}
         >
          
-        </Particles> */}
-        <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
+        </Particles>
+       
         
     </div>
     
