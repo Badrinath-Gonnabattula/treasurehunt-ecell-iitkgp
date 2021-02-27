@@ -33,7 +33,7 @@ body {
     transition: box-shadow 0.5s;
     will-change: transform;
     border: 5px solid rgb(82, 79, 79);
-    margin:2em auto;
+    margin:0;
     text-align: center;
   }
   
@@ -60,7 +60,7 @@ body {
     transition: box-shadow 0.5s;
     will-change: transform;
     border: 5px solid rgb(14, 13, 13);
-    margin:2em 4em;
+    margin:0;
     text-align: center;
   }
   p{
@@ -80,7 +80,7 @@ body {
     transition: box-shadow 0.5s;
     will-change: transform;
     border: 5px solid rgb(14, 13, 13);
-    margin:2em 4em;
+    margin:0;
     text-align: center;
   }
   p{

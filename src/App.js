@@ -1,6 +1,7 @@
 import React from 'react'
 import Questions from './components/questionspage/Questions';
 import QuestionCard from './components/questionspage/QuestionCard';
+import Demo from './components/questionspage/Datatable/demo.js';
 import Home from './components/homepage/home'
 import {
   BrowserRouter as Router,
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path="/card">
             <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
+        </Route >
+        <Route path="/board">
+            <Demo/>
         </Route>
 
      </Switch>
