@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useSpring, animated } from "react-spring";
 import Hint from './hint.js';
+import Popup from "./popup.js";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
 import TextField from "@material-ui/core/TextField";
@@ -10,11 +11,14 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import "../../assets/cardstyle.css";
 import "../../assets/hint.css";
+import "../../assets/poppstyl.css";
 // var obj;
 function QuestionCard(props) {
     // obj=props
 
     const [Resp, setResp] = useState("");
+
+    const [isOpen, setIsOpen] = useState(true);
 
     
     const cards = [
@@ -43,7 +47,7 @@ function QuestionCard(props) {
                       <div className="card-title">{card.title}</div>
                       <div className="card-body">{card.description}</div>
                       {/* <Image ratio={card.imageRatio} src={card.image} /> */}
-                      <Hint> Hint</Hint>
+                      <Hint container justify="center" spacing={0} className='cards-container' name="Hint"> Hint</Hint>
                       <TextField
                         id="outlined-full-width"
                         // ref="ans"

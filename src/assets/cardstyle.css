@@ -56,10 +56,11 @@ body {
 }
 
 .hero {
-  display: flex;
+  height:100%;
+  /* display: flex; */
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background: linear-gradient(180deg, #2a3267, #1e282f 100%);
 }
 
@@ -89,14 +90,15 @@ body {
 .column {
   display: flex;
   flex: 1 1 auto;
+  height:100%;
   padding: 10px;
   width: 100%;
 }
-@media screen and (min-width: 980px) {
+/* @media screen and (min-width: 980px) {
   .column {
     width: 33.3333333333%;
   }
-}
+} */
 
 .card {
   display: flex;
