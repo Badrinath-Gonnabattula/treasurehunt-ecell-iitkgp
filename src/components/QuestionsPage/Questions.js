@@ -40,23 +40,21 @@ const Questions = () =>{
       email: "eshaanawasthi24@gmail.com",
     })
     .then(function (response) {
-      corr = response.data.isCorrect;
+      
       console.log(answer);
-      console.log("ye wala", corr);
+      
       console.log(qid);
-      if(corr) {
-        setQid(qid + 1);
+      if(response.data.isCorrect) {
         axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
-        ques_id: qid,
+        ques_id: qid + 1,
         })
         .then(function (response) {
           setQuestion({
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
-          });
-         
+          }, ()=> console.log(question));
+          setQid(qid + 1);
         }).then(function (){
-          console.log(question);
             //If correct answer hide the question window and show congrats!
             //Should be executed after getting correct answer from backend
             let particleWindow = document.getElementById('particles-js');
