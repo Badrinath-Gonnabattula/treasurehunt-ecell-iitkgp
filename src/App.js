@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import Congratulations from './components/QuestionsPage/Congratulations';
+import Rules from './components/RulesPage/Rules'
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
             <Questions/>
         </Route>
         <Route path="/rules">
-          <RulesCard />
+          <Rules />
           </Route>
         <Route path="/anim">
             <Congratulations/>
