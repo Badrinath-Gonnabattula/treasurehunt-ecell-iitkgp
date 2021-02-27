@@ -2,27 +2,52 @@ import React from "react";
 import {useEffect,useState} from "react";
 import Particles from 'react-particles-js';
 import QuestionCard from './QuestionCard';
+import Congratulations from './Congratulations';
 import '../../assets/particleCss.css';
 
 
 const Questions = () =>{
   const [question,setQuestion] = useState({});
+  const [correct,setCorrect] = useState(false);
+  const [congrats,setCongrats] = useState(null);
   const onSubmit = (e,answer) =>{
     //Handle API calls
+
     console.log(answer);
     setQuestion({
       questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
-      hint:"",
+      hint:"https://6jlvz1j5q3.csb.app/undraw_upload.svg",
     })
+
+    //If correct answer hide the question window and show congrats!
+    //Should be executed after getting correct answer from backend
+    let particleWindow = document.getElementById('particles-js');
+    let questioncard = document.getElementsByClassName('main');
+    setCorrect(true);
+    setCongrats(<Congratulations/>);
+    particleWindow.style.display = 'none';
+    questioncard[0].style.display = 'none';
+
+    //Hide Congrats window after sometime
+    setTimeout(()=>{
+      setCongrats(null);
+      let particleWindow = document.getElementById('particles-js');
+      let questioncard = document.getElementsByClassName('main');
+      particleWindow.style.display = 'block';
+      questioncard[0].style.display = 'block';
+      setCorrect(true);
+    },4500);
   }
+
 
   useEffect(()=>{
     //Handle API calls
     setQuestion({
       questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
-      hint:"",
+      hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
     })
   },[])
+
 
   return (
     <div style={{height:'100%'}}>
@@ -136,6 +161,7 @@ const Questions = () =>{
          
         </Particles>
         <QuestionCard question = {question} onSubmit = {onSubmit} />
+        {congrats}
         
     </div>
     

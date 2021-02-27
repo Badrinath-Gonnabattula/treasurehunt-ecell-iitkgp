@@ -20,3 +20,6 @@ function RulesCard() {
 }
 
 export default RulesCard;
+
+
+
