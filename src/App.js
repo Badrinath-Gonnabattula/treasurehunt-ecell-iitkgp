@@ -1,7 +1,7 @@
 import Questions from './components/questionspage/Questions';
 import QuestionCard from './components/questionspage/QuestionCard';
 import Home from './components/homepage/home'
-import RulesCard from './components/homepage/RulesCard'
+
 import {
   BrowserRouter as Router,
   Switch,

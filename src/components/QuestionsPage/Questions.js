@@ -11,9 +11,9 @@ const Questions = () =>{
   const [question,setQuestion] = useState({});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
-
-  // const ques_id = 0;
-  // if (ques_id == 0){
+  const [qid, setQid] = useState(1);
+  
+  // if (ques_id === 0){
   //   axios.post('https://node.ecell-iitkgp.org/getQuestion', {
   //     ques_id: ques_id,
   //   })
@@ -29,42 +29,95 @@ const Questions = () =>{
   //     console.log(error);
   //   });
   // }
+
   const onSubmit = (e,answer) =>{
     //Handle API calls
+    
+    var corr = false;
+    axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
+      ques_id: qid,
+      answer: answer,
+      email: "eshaanawasthi24@gmail.com",
+    })
+    .then(function (response) {
+      corr = response.data.isCorrect;
+      console.log(answer);
+      console.log("ye wala", corr);
+      console.log(qid);
+      if(corr) {
+        setQid(qid + 1);
+        axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
+        ques_id: qid,
+        })
+        .then(function (response) {
+          setQuestion({
+            questionbody: response.data.details.question,
+            hint: response.data.details.hint,
+          });
+        }).then(function (){
+            //If correct answer hide the question window and show congrats!
+            //Should be executed after getting correct answer from backend
+            let particleWindow = document.getElementById('particles-js');
+            let questioncard = document.getElementsByClassName('main');
+            setCorrect(true);
+            setCongrats(<Congratulations/>);
+            particleWindow.style.display = 'none';
+            questioncard[0].style.display = 'none';
 
-    console.log(answer);
-    setQuestion({
-      questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
-      hint:"https://6jlvz1j5q3.csb.app/undraw_upload.svg",
+            //Hide Congrats window after sometime
+            setTimeout(()=>{
+              setCongrats(null);
+              let particleWindow = document.getElementById('particles-js');
+              let questioncard = document.getElementsByClassName('main');
+              particleWindow.style.display = 'block';
+              questioncard[0].style.display = 'block';
+              setCorrect(true);
+            },4500);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+
+        
+        
+
+    }else{
+      console.log("wrong answer");
+    }
+    })
+    .catch(function (error) {
+      console.log(error);
     })
 
-    //If correct answer hide the question window and show congrats!
-    //Should be executed after getting correct answer from backend
-    let particleWindow = document.getElementById('particles-js');
-    let questioncard = document.getElementsByClassName('main');
-    setCorrect(true);
-    setCongrats(<Congratulations/>);
-    particleWindow.style.display = 'none';
-    questioncard[0].style.display = 'none';
+    
+    // setQuestion({
+    //   questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
+    //   hint:"https://6jlvz1j5q3.csb.app/undraw_upload.svg",
+    // })
 
-    //Hide Congrats window after sometime
-    setTimeout(()=>{
-      setCongrats(null);
-      let particleWindow = document.getElementById('particles-js');
-      let questioncard = document.getElementsByClassName('main');
-      particleWindow.style.display = 'block';
-      questioncard[0].style.display = 'block';
-      setCorrect(true);
-    },4500);
+    
   }
 
 
   useEffect(()=>{
     //Handle API calls
-    setQuestion({
-      questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
-      hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
+    // setQuestion({
+    //   questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
+    //   hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
+    // })
+    axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
+      ques_id: qid,
     })
+    .then(function (response) {
+      setQuestion({
+        questionbody: response.data.details.question,
+        hint: response.data.details.hint,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   },[])
 
 
