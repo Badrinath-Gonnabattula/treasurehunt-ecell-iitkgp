@@ -31,9 +31,10 @@ function App() {
         <Route path="/rules">
           <Rules />
         </Route>
-        <Route path="/play">
+        {loggedin ? <Route path="/play">
           <Questions/>
-        </Route>
+        </Route> : <h1>Oops</h1>}
+        
         <Route path="/card">
             <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>
         </Route >
