@@ -1,4 +1,5 @@
 import React from 'react';
+import {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -12,12 +13,13 @@ import PlaynowCard from './playnowcard.js'
 import RulesCard from './RulesCard.js';
 import ResultsCard from './ResultsCard'
 import { Typography } from '@material-ui/core';
-import SignUpForm from '../SignUpForm/SignUpForm'
+import SignInForm from '../SignInForm/SignInForm'
 
 import playimage from './playimg.png';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
   close:{
     float:'right',
+    zIndex:1000,
+    boxShadow: '0px 0px 0px 0px rgba(0, 0, 0, 0)',
   }
 }));
 
@@ -46,6 +50,7 @@ export default function Home() {
   const handleClose = () => {
     setOpen(false);
   };
+
 
   return (
     <div className='home-container'>
@@ -85,10 +90,10 @@ export default function Home() {
       >
         <Fade in={open}>
           <div className='paper'>
-          <IconButton aria-label="delete" className={classes.close} size="large">
-            <CancelIcon fontSize="large"/>
-          </IconButton>
-            <SignUpForm />
+            <IconButton aria-label="delete" className={classes.close} size="large">
+              <CancelIcon fontSize="large" />
+            </IconButton>
+            <SignInForm />
           </div>
         </Fade>
       </Modal>
