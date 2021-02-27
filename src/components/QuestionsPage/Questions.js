@@ -12,7 +12,6 @@ const Questions = () =>{
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
   const [qid, setQid] = useState(1);
-  
   // if (ques_id === 0){
   //   axios.post('https://node.ecell-iitkgp.org/getQuestion', {
   //     ques_id: ques_id,
@@ -54,7 +53,9 @@ const Questions = () =>{
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
           });
+         
         }).then(function (){
+          console.log(question);
             //If correct answer hide the question window and show congrats!
             //Should be executed after getting correct answer from backend
             let particleWindow = document.getElementById('particles-js');
@@ -77,11 +78,6 @@ const Questions = () =>{
         .catch(function (error) {
           console.log(error);
         });
-        
-
-        
-        
-
     }else{
       console.log("wrong answer");
     }
