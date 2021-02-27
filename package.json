@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
     "emotion": "10.0.5",
     "font-awesome": "^4.7.0",
     "gsap": "^3.6.0",
@@ -23,8 +24,8 @@
     "react-scripts": "4.0.3",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^5.0.0",
-    "reactstrap": "^8.9.0",
     "react-with-gesture": "4.0.0",
+    "reactstrap": "^8.9.0",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"
   },

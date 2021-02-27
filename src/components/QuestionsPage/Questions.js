@@ -5,11 +5,30 @@ import QuestionCard from './QuestionCard';
 import Congratulations from './Congratulations';
 import '../../assets/particleCss.css';
 
+const axios = require('axios').default;
 
 const Questions = () =>{
   const [question,setQuestion] = useState({});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
+
+  // const ques_id = 0;
+  // if (ques_id == 0){
+  //   axios.post('https://node.ecell-iitkgp.org/getQuestion', {
+  //     ques_id: ques_id,
+  //   })
+  //   .then(function (response) {
+  //     setQuestion({
+  //       questionbody: response.question,
+  //       hint: response.hint,
+  //     });
+  //     ques_id++;
+  //     console.log("1");
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
   const onSubmit = (e,answer) =>{
     //Handle API calls
 
