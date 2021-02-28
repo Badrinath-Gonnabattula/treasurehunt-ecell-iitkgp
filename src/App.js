@@ -4,7 +4,7 @@ import QuestionCard from './components/QuestionsPage/QuestionCard';
 import Demo from './components/QuestionsPage/Datatable/demo.js';
 import Home from './components/homepage/home'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
