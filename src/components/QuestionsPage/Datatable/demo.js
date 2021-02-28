@@ -199,8 +199,8 @@ const CustomTableCell = withStyles((theme) => ({
   head: {
     fontSize: 14, // cbpBody1
     fontWeight: 400,
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.pink,
+    color: theme.palette.common.black,
 
   },
   body: {
