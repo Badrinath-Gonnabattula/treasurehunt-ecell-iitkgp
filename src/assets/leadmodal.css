@@ -1,0 +1,29 @@
+.mrd{
+  z-index:100000000000000;
+  
+}
+.pos{
+  right:0;
+  margin:2vh;
+  padding:auto;
+  z-index:100000000000000;
+}
+.divsa{
+  height:auto;
+  width:auto;
+  z-index:100000000000000;
+  display: inline-block;
+  
+}
+ul,li{
+  z-index:10000000000000000  !important;
+}
+.MuiList-root,.MuiMenu-list,.MuiList-padding{
+  z-index:100000000000000;
+
+}
+
+h2{
+  text-align: center;
+  margin-top: 20px;
+}
