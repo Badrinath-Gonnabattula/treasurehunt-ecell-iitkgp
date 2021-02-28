@@ -54,8 +54,8 @@ export default function Home(props) {
 
   const handlelog = () => {
     props.onlog();
+    
   }
-
 
   return (
     <div className='home-container'>
