@@ -5,12 +5,12 @@ import './Rules.css'
 import CardBackground from './map.png'
 
 const cards = [
-  'Rule1',
-  'Rule2',
-  'Rule3',
-  'Rule4',
-  'Rule5',
-  'Rule6'
+  'So lets Begin! Click back to return to the Home Page',
+  'Answering quickly will ensure a better position, so be quick!',
+  'Check your standing on the leeaderboard using the Leaderboard button on the top right',
+  'There are no negative points for wrong answers',
+  'Questions are in an order, answer a question to see the next one.',
+  'Welcome to this Treasure Hunt!!!'
 ]
 
 // These two are just helpers, they curate spring data, values that are later being interpolated into css
@@ -43,7 +43,7 @@ export default function Rules() {
     {props.map(({ x, y, rot, scale }, i) => (
     <animated.div key={i} style={{ transform: interpolate([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`) }}>
       {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
-      <animated.div {...bind(i)} style={{ transform: interpolate([rot, scale], trans) , backgroundImage: "url("+CardBackground+")", backgroundSize: 'cover' }}><p>{cards[i]}</p></animated.div>
+      <animated.div {...bind(i)} style={{ transform: interpolate([rot, scale], trans) , backgroundImage: "url("+CardBackground+")", backgroundSize: 'cover' }}><p className = 'cards_rules'>{cards[i]}</p></animated.div>
       
     </animated.div>
   ))}
