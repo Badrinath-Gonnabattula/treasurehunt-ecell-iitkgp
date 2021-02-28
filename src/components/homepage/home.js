@@ -116,7 +116,7 @@ export default function Home(props) {
           </Grid>
           <Grid container justify="center" spacing={0}>
             <h6 className='subtitle'>
-              <i>POWERED BY - ENTREPRENUERSHIP CELL,IIT KHARAGPUR</i>
+              <i>POWERED BY - ENTREPRENEURSHIP CELL,IIT KHARAGPUR</i>
             </h6>
           </Grid>
         </Grid> 
