@@ -14,7 +14,6 @@ import Rules from './components/RulesPage/Rules';
 import { Redirect } from 'react-router';
 
 function App() {
-
   const [loggedin,setLoggedin] = React.useState(false);
 
   const [userdata,setUserdata] = React.useState({"details":'',"success":false});
@@ -25,10 +24,9 @@ function App() {
     data = JSON.parse(data);
 
     setUserdata({...userdata,"details":data.details,"success":data.success});
-
-    
     
   }
+  
 
   return (
     <>

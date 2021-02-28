@@ -8,26 +8,74 @@ import { useSpring, animated } from 'react-spring'
 // include styles
 import 'rodal/lib/rodal.css';
 import "../../assets/hint.css";
+
+
+const axios = require('axios');
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { visible: false };
+    this.state = { 
+      visible: false, 
+      data:[],
+    };
+    this.fetchData = this.fetchData.bind(this);
+
   }
 
   show() {
-    this.setState({ visible: true });
+    this.setState({ 
+      ...this.state,
+      visible: true });
   }
 
   hide() {
-    this.setState({ visible: false });
+    this.setState({ 
+      ...this.state,
+      visible: false });
   }
 
+  fetchData(){
+    axios.get('https://node.ecell-iitkgp.org/hunt/getSortedListOfAllParticipants/')
+          .then(res=>{
+            const data = res.data.details;
+            console.log(data);
+            let allData = [];
+            data.map((e,i)=>{
+              if(e.name){
+                allData[i] = {
+                  name:e.name,
+                  email:e.email,
+                  score:e.score
+                } 
+              }
+              else{
+                allData[i] = {
+                  name:e.name_iit,
+                  email:e.email_iit,
+                  score:e.score
+                } 
+              }
+            })
+            this.setState({
+              ...this.state,
+              data:allData,
+            })
+          })
+  }
+
+  componentDidMount(){
+    this.fetchData();
+  
+  }
+  
   render() {
     return (
       <div className="mrd" >
           <div className="mrd" onClick={this.show.bind(this)}>
           {/* <Anb  name="Leaderboard" > */}
-        <button className="pos" onClick={this.show.bind(this)}>
+          <div></div>
+        <button className="pos" onClick={()=>{this.show.bind(this); this.fetchData()}}>
         
         Leaderboard
         </button>
@@ -36,7 +84,7 @@ export default class App extends React.Component {
         <Rodal className="mrd " visible={this.state.visible} onClose={this.hide.bind(this)} animation="door" customStyles={{height: '85%',width:'70%',display:"block", top:"5%"}}>
           <div className="mrd ">
               <h2>Leaderboard</h2>
-              <Demo />
+              <Demo data={this.state.data}/>
           </div>
         </Rodal>
       </div>

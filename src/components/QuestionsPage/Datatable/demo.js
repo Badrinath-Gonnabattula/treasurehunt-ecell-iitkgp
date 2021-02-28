@@ -22,12 +22,13 @@ import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import SearchBar from "material-ui-search-bar";
+
 import TextField from "material-ui/TextField";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-let counter = 0;
+
+
 function createData(rank, name, emailid, score) {
-  counter += 1;
-  return { id: counter, rank, name, emailid, score };
+  return { id: rank, rank, name, emailid, score };
 }
 
 const divStyle = {
@@ -177,7 +178,7 @@ let EnhancedTableToolbar = (props) => {
       
       <div>
             <TextField
-              placeholder="Search"
+              placeholder="Enter email id to search..."
               onChange={handleSearch}
               value={value}
             />
@@ -284,11 +285,19 @@ const styles = (theme) => ({
 class EnhancedTable extends React.Component {
   constructor(props) {
     super(props);
-
+    let data = [];
+    this.props.data.map((e,i)=>{
+      data[i] = createData(i+1,e.name,e.email,e.score);
+    })
     this.state = {
+      filterData:data,
       order: "asc",
       orderBy: "rank",
       selected: [],
+<<<<<<< Updated upstream
+      data: data,
+      filterData:data,
+||||||| constructed merge base
       searchValue:"",
       data: [
         createData(1, "Data1", "akshat@g.com", 3.72),
@@ -322,10 +331,55 @@ class EnhancedTable extends React.Component {
         createData(13, "Data3", "akshat@g.com", 3.155217)
       ],
 
+=======
+      searchValue:"",
+      data: [
+        createData(1, "Data1", "a@g.com", 3.72),
+        createData(2, "Data2", "s@g.com", 3.723),
+        createData(3, "Data3", "d@g.com", 3.245),
+        createData(4, "Data4", "f@g.com", 3.2157),
+        createData(5, "Data5", "g@g.com", 3.2157),
+        createData(6, "Data6", "h@g.com", 312.7),
+        createData(7, "Data7", "j@g.com", 3245.7),
+        createData(8, "Data8", "k@g.com", 3125.7),
+        createData(9, "Data9", "m@g.com", 3.57),
+        createData(10, "Data0", "n@g.com", 31.7),
+        createData(11, "Data1", "b@g.com", 3.217),
+        createData(12, "Data2", "v@g.com", 3.527),
+        createData(13, "Data3", "c@g.com", 3.155217)
+      ],
+
+      filterData: [
+        createData(1, "Data1", "a@g.com", 3.72),
+        createData(2, "Data2", "s@g.com", 3.723),
+        createData(3, "Data3", "d@g.com", 3.245),
+        createData(4, "Data4", "f@g.com", 3.2157),
+        createData(5, "Data5", "g@g.com", 3.2157),
+        createData(6, "Data6", "h@g.com", 312.7),
+        createData(7, "Data7", "j@g.com", 3245.7),
+        createData(8, "Data8", "k@g.com", 3125.7),
+        createData(9, "Data9", "m@g.com", 3.57),
+        createData(10, "Data0", "n@g.com", 31.7),
+        createData(11, "Data1", "b@g.com", 3.217),
+        createData(12, "Data2", "v@g.com", 3.527),
+        createData(13, "Data3", "c@g.com", 3.155217)
+      ],
+
+>>>>>>> Stashed changes
       page: 0,
       rowsPerPage: 10
     };
   }
+  
+  componentWillReceiveProps(someProp) {
+    let data = [];
+    someProp.data.map((e,i)=>{
+      data[i] = createData(i+1,e.name,e.email,e.score);
+    })
+    console.log(data);
+    this.setState({...this.state,data:data,filterData:data})
+  }
+
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -382,7 +436,7 @@ class EnhancedTable extends React.Component {
   isSelected = (id) => this.state.selected.indexOf(id) !== -1;
 
   handleSearch = (event) => {
-    const { data } = this.state;
+    const  {data}  = this.state;
     let filteredDatas = [];
     filteredDatas = data.filter(e => {
       let mathesItems = Object.values(e);
@@ -420,7 +474,7 @@ class EnhancedTable extends React.Component {
           value={this.searchValue}
         />
         <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle">
+          <Table className={classes.table} aria-labelledby="tableTitle" stickyHeader>
             
             <EnhancedTableHead
               numSelected={selected.length}
