@@ -10,7 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import Rules from './components/RulesPage/Rules';
-
+import PrivatePage from './components/PrivatePage';
 import { Redirect } from 'react-router';
 
 function App() {
@@ -24,16 +24,17 @@ function App() {
     data = JSON.parse(data);
 
     setUserdata({...userdata,"details":data.details,"success":data.success});
+
+    
     
   }
-  
 
   return (
     <>
     <Router>
       <Switch>
         <Route exact path="/">
-            {loggedin ? <Redirect to='/play'/> : <Home onlog={handlemainlog} />}
+          <Home onlog={handlemainlog} />
         </Route>
         <Route path="/rules">
           <Rules />
@@ -41,9 +42,12 @@ function App() {
         <Route path="/board">
             <Demo/>
         </Route>
-        {loggedin ? <Route path="/play">
+        <Route path="/play">
+            <PrivatePage/>
+        </Route>
+        {/* {loggedin ? <Route path="/play">
           <Questions email={userdata.details.email_iit}/>
-        </Route> : <h1>Oops</h1>}
+        </Route> : <h1>Oops</h1>} */}
         
         <Route path="/card">
             <QuestionCard questiontitle='Try' question="try try" image="https://6jlvz1j5q3.csb.app/undraw_static_assets.svg" ans="A"/>

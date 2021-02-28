@@ -12,6 +12,7 @@ const axios = require('axios').default;
 var qid;
 
 const Questions = (props) =>{
+  console.log(props);
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
@@ -89,11 +90,11 @@ const Questions = (props) =>{
     
     //Hide the alert after some time
 
-    setTimeout(()=>{
-      const alertWindow = document.getElementsByClassName('WA')[0];
-      alertWindow.style.display = "none";
-    },5000);
-    }
+      setTimeout(()=>{
+        const alertWindow = document.getElementsByClassName('WA')[0];
+        alertWindow.style.display = "none";
+      },5000);
+      }
     })
     .catch(function (error) {
       console.log(error);
