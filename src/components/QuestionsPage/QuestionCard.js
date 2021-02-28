@@ -16,7 +16,7 @@ import Alert from '@material-ui/lab/Alert';
 
 function QuestionCard(props) {
     // obj=props
-    console.log(props);
+    
     const [Question, setQuestion] = useState({questionbody:"",hint:[]});
     const [Resp,setResp] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,7 @@ function QuestionCard(props) {
                       </div>
                       <Popup isOpen={isOpen}>
                         <div className="flex-img-container">
-                          {Question.hint.map((e)=>(
+                          {Question.hint.map((e)=>(                           
                             <Image ratio={cards[0].imageRatio} src={e} width={100/Question.hint.length}/>
                           ))}
                           {/* <Image ratio={cards[0].imageRatio} src={Question.hint} width={100}/> */}
