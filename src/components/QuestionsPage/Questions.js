@@ -12,7 +12,6 @@ const axios = require('axios').default;
 var qid;
 
 const Questions = (props) =>{
-  console.log(props);
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
@@ -45,10 +44,6 @@ const Questions = (props) =>{
       email: "ashish2829001@gmail.com",
     })
     .then(function (response) {
-      
-      console.log(answer);
-      
-      console.log(qid);
       if(response.data.isCorrect) {
         axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
         ques_id: qid + 1,
@@ -58,7 +53,6 @@ const Questions = (props) =>{
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
           }, ()=> console.log(question));
-          console.log(response);
           qid = qid + 1;
         }).then(function (){
             //If correct answer hide the question window and show congrats!
@@ -99,33 +93,6 @@ const Questions = (props) =>{
     .catch(function (error) {
       console.log(error);
     })
-    
-    
-
-    //If correct answer hide the question window and show congrats!
-    //Should be executed after getting correct answer from backend
-
-    // let particleWindow = document.getElementById('particles-js');
-    // let questioncard = document.getElementsByClassName('main');
-    // setCorrect(true);
-    // setCongrats(<Congratulations/>);
-    // particleWindow.style.display = 'none';
-    // questioncard[0].style.display = 'none';
-
-    //Hide Congrats window after sometime
-    // setTimeout(()=>{
-    //   setCongrats(null);
-    //   let particleWindow = document.getElementById('particles-js');
-    //   let questioncard = document.getElementsByClassName('main');
-    //   particleWindow.style.display = 'block';
-    //   questioncard[0].style.display = 'block';
-    //   setCorrect(true);
-    // },4500);
-    
-    // setQuestion({
-    //   questionbody:"I’m just like $ and ₹ but cannot be banned like ₹500/₹1000 notes. Unlike the government, I’m “by the people and for the people”, totally decentralized. Who am I?",
-    //   hint:"https://6jlvz1j5q3.csb.app/undraw_upload.svg",
-    // })
 
     
   }

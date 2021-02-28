@@ -306,7 +306,6 @@ class EnhancedTable extends React.Component {
     someProp.data.map((e,i)=>{
       data[i] = createData(i+1,e.name,e.email,e.score);
     })
-    console.log(data);
     this.setState({...this.state,data:data,filterData:data})
   }
 

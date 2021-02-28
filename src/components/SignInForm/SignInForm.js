@@ -19,8 +19,6 @@ import Alert from '@material-ui/lab/Alert';
 const axios = require('axios');
 
 export default function SignInForm(props) {
-  // const classes = useStyles();
-  console.log(props);
   const [userinfo,setUserinfo] = useState({"name":'',"email":'',"password":'',"loggedin":false,"details":null});
 
   const handlename = (e) => {
@@ -38,24 +36,16 @@ export default function SignInForm(props) {
   const [success,setSuccess] = useState(false);
   const handlelogin = (e) => {
     e.preventDefault();
-    console.log(userinfo);
     axios.post('https://node.ecell-iitkgp.org/hunt/login',{"email":userinfo.email,"password":userinfo.password})
       .then((response) => {
         setUserinfo({...userinfo,"loggedin":response.data.success,"details":response.data.details});
-        console.log(userinfo);
-        console.log(response.data);
         if(response.data.success){
-          console.log("sad");
-          // props.onlog();
-
           let obj = response.data;
           sessionStorage.setItem('userdata',JSON.stringify(obj));
           setSuccess(true);
         }
         else{
-          console.log("err");
           const alertWindow = document.getElementsByClassName('WA')[0];
-          // console.log(alertWindow);
           alertWindow.style.display = 'block';
           document.getElementsByClassName('ATAG')[0].style.marginTop = '20px';
 
