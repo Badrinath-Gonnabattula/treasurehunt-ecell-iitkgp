@@ -37,18 +37,14 @@ const Questions = (props) =>{
 
   const onSubmit = (e,answer) =>{
     //Handle API calls
-    console.log(props.email);
+    console.log(typeof(props.email));
     var corr = false;
     axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
       ques_id: qid,
       answer: answer,
-      email: "ashish2829001@gmail.com",
+      email: props.email,
     })
     .then(function (response) {
-      
-      console.log(answer);
-      
-      console.log(qid);
       if(response.data.isCorrect) {
         axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
         ques_id: qid + 1,
@@ -58,7 +54,7 @@ const Questions = (props) =>{
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
           }, ()=> console.log(question));
-          console.log(response);
+          
           qid = qid + 1;
         }).then(function (){
             //If correct answer hide the question window and show congrats!
@@ -138,9 +134,10 @@ const Questions = (props) =>{
     //   hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
     // })
     axios.post('https://node.ecell-iitkgp.org/hunt/getqID', {
-      email: "ashish2829001@gmail.com",
+      email: props.email,
     })
     .then(function (response){
+      console.log(response);
       qid = response.data.details.curQuesID
     })
     .then(function (){
