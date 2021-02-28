@@ -36,6 +36,7 @@ export default class App extends React.Component {
   }
 
   fetchData(){
+    
     axios.get('https://node.ecell-iitkgp.org/hunt/getSortedListOfAllParticipants/')
           .then(res=>{
             const data = res.data.details;
@@ -61,6 +62,7 @@ export default class App extends React.Component {
               data:allData,
             })
           })
+          console.log(this.state);
   }
 
   componentDidMount(){

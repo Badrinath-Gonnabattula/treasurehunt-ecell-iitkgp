@@ -59,14 +59,7 @@ const Questions = (props) =>{
   }
   const onSubmit = (e,answer) =>{
     //Handle API calls
-    if(qid>10){
-      let particleWindow = document.getElementById('particles-js');
-      let questioncard = document.getElementsByClassName('main');
-      setCorrect(true);
-      setCongrats(<Completed/>);
-      particleWindow.style.display = 'none';
-      questioncard[0].style.display = 'none';
-    }
+    
     console.log(props.email);
     var corr = false;
     axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
@@ -76,6 +69,15 @@ const Questions = (props) =>{
     })
     .then(function (response) {
       if(response.data.isCorrect) {
+        if(qid==10){
+          let particleWindow = document.getElementById('particles-js');
+          let questioncard = document.getElementsByClassName('main');
+          setCorrect(true);
+          setCongrats(<Completed/>);
+          particleWindow.style.display = 'none';
+          questioncard[0].style.display = 'none';
+          return;
+        }
         animation();
         axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
         ques_id: qid + 1,
@@ -149,12 +151,6 @@ const Questions = (props) =>{
   }
 
   return (
-    <div>
-      {success?
-      <div>
-      <Redirect to='/'/>
-      </div>
-      :
     <div style={{height:'100%'}}>
       
         <Particles id="particles-js"
@@ -271,8 +267,6 @@ const Questions = (props) =>{
         
         {congrats}
         
-    </div>
-}
     </div>
     
 );
