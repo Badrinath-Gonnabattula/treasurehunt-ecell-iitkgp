@@ -5,13 +5,14 @@ import QuestionCard from './QuestionCard';
 import Congratulations from './Congratulations';
 import Mod from './mod.js'
 import '../../assets/leadmodal.css';
-
+import {Redirect} from 'react-router';
 import '../../assets/particleCss.css';
 
 const axios = require('axios').default;
 var qid;
 
 const Questions = (props) =>{
+  const [success,setSuccess] = useState(false);
   console.log(props);
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
@@ -50,18 +51,31 @@ const Questions = (props) =>{
         ques_id: qid + 1,
         })
         .then(function (response) {
+          if(!success)
           setQuestion({
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
           }, ()=> console.log(question));
           
           qid = qid + 1;
+          if(qid>10){
+            
+            setSuccess(true);
+            return(
+              <div>
+      <Redirect to='/'/>
+      </div>
+            );
+          }
         }).then(function (){
             //If correct answer hide the question window and show congrats!
-            //Should be executed after getting correct answer from backend
+            //Should be executed after getting correct answer from backen
+            if(!success){
             let particleWindow = document.getElementById('particles-js');
+
             let questioncard = document.getElementsByClassName('main');
             setCorrect(true);
+            
             setCongrats(<Congratulations/>);
             particleWindow.style.display = 'none';
             questioncard[0].style.display = 'none';
@@ -74,7 +88,7 @@ const Questions = (props) =>{
               particleWindow.style.display = 'block';
               questioncard[0].style.display = 'block';
               setCorrect(true);
-            },4500);
+            },4500);}
         })
         .catch(function (error) {
           console.log(error);
@@ -162,6 +176,12 @@ const Questions = (props) =>{
 
 
   return (
+    <div>
+      {success?
+      <div>
+      <Redirect to='/'/>
+      </div>
+      :
     <div style={{height:'100%'}}>
       
         <Particles id="particles-js"
@@ -279,9 +299,10 @@ const Questions = (props) =>{
         {congrats}
         
     </div>
+}
+    </div>
     
 );
-}
+      }
 
 export default Questions;
-
