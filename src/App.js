@@ -19,15 +19,14 @@ function App() {
   const [userdata,setUserdata] = React.useState({"details":'',"success":false});
 
   const handlemainlog = () => {
-
+    setLoggedin(true);
     let data = sessionStorage.getItem('userdata');
     data = JSON.parse(data);
 
     setUserdata({...userdata,"details":data.details,"success":data.success});
-
-    setLoggedin(true);
     
   }
+  
 
   return (
     <>
