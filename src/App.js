@@ -1,7 +1,7 @@
 import React from 'react'
-import Questions from './components/questionspage/Questions';
-import QuestionCard from './components/questionspage/QuestionCard';
-import Demo from './components/questionspage/Datatable/demo.js';
+import Questions from './components/QuestionsPage/Questions';
+import QuestionCard from './components/QuestionsPage/QuestionCard';
+import Demo from './components/QuestionsPage/Datatable/demo.js';
 import Home from './components/homepage/home'
 import {
   BrowserRouter as Router,
@@ -9,7 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Rules from './components/rulespage/Rules';
+import Rules from './components/RulesPage/Rules';
 
 import { Redirect } from 'react-router';
 
@@ -20,13 +20,13 @@ function App() {
   const [userdata,setUserdata] = React.useState({"details":'',"success":false});
 
   const handlemainlog = () => {
-
+    setLoggedin(true);
     let data = sessionStorage.getItem('userdata');
     data = JSON.parse(data);
 
     setUserdata({...userdata,"details":data.details,"success":data.success});
 
-    setLoggedin(true);
+    
     
   }
 

@@ -35,7 +35,7 @@ const Questions = (props) =>{
 
   const onSubmit = (e,answer) =>{
     //Handle API calls
-    
+    console.log(props.email);
     var corr = false;
     axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
       ques_id: qid,
