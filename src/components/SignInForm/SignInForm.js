@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './SignInForm.css';
 import {Redirect} from 'react-router';
-
+import Alert from '@material-ui/lab/Alert';
 
 const axios = require('axios');
 
@@ -44,11 +44,26 @@ export default function SignInForm(props) {
         console.log(userinfo);
         console.log(response.data);
         if(response.data.success){
+          console.log("sad");
           props.onlog();
+        }
+        else{
+          console.log("err");
+          const alertWindow = document.getElementsByClassName('WA')[0];
+          // console.log(alertWindow);
+          alertWindow.style.display = 'block';
+          document.getElementsByTagName('a')[0].style.marginTop = '20px';
+
+          setTimeout(()=>{
+            alertWindow.style.display = 'none';
+            var aTag = document.getElementsByTagName('a')[0];
+            if(aTag){
+              aTag.style.marginTop = '40px';
+            }
+          },4500);
         }
       })
       .catch((error) => {
-        console.log(error);
       })
   }
 
@@ -69,6 +84,11 @@ export default function SignInForm(props) {
         <div class="user-box">
           <input type="password" onChange={handlepassword} value={userinfo.password}></input>
           <label for="">Password</label>
+        </div>
+        <div className='WA'>
+            <Alert severity="error" style={{marginBottom:0}}>
+              User not found!
+            </Alert>
         </div>
         <a href="" onClick={handlelogin}>
           <span></span>
