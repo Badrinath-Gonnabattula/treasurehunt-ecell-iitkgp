@@ -10,6 +10,8 @@ const cards = [
   'Check your standing on the leeaderboard using the Leaderboard button on the top right',
   'There are no negative points for wrong answers',
   'Questions are in an order, answer a question to see the next one.',
+  'If you have registered normally, use your GES ID as your pasword',
+  'If you have registered as a student of IIT Kharagpur, use your roll number for password.',
   'Welcome to this Treasure Hunt!!!'
 ]
 
