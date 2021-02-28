@@ -46,6 +46,10 @@ export default function SignInForm(props) {
         if(response.data.success){
           console.log("sad");
           props.onlog();
+
+          let obj = response.data;
+          sessionStorage.setItem('userdata',JSON.stringify(obj));
+          
         }
         else{
           console.log("err");

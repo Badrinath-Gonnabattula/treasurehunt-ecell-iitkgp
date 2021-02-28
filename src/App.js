@@ -16,11 +16,17 @@ import { Redirect } from 'react-router';
 function App() {
   const [loggedin,setLoggedin] = React.useState(false);
 
-  const [userdata,setUserdata] = React.useState(null);
+  const [userdata,setUserdata] = React.useState({"details":'',"success":false});
 
   const handlemainlog = () => {
+
+    let data = sessionStorage.getItem('userdata');
+    data = JSON.parse(data);
+
+    setUserdata({...userdata,"details":data.details,"success":data.success});
+
     setLoggedin(true);
-    console.log(userdata);
+    
   }
 
   return (
@@ -37,7 +43,7 @@ function App() {
             <Demo/>
         </Route>
         {loggedin ? <Route path="/play">
-          <Questions/>
+          <Questions email={userdata.details.email_iit}/>
         </Route> : <h1>Oops</h1>}
         
         <Route path="/card">

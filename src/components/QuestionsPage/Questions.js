@@ -10,7 +10,7 @@ import '../../assets/particleCss.css';
 
 const axios = require('axios').default;
 
-const Questions = () =>{
+const Questions = (props) =>{
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
@@ -40,7 +40,7 @@ const Questions = () =>{
     axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
       ques_id: qid,
       answer: answer,
-      email: "eshaanawasthi24@gmail.com",
+      email: props.email,
     })
     .then(function (response) {
       

@@ -2,11 +2,16 @@ import React from 'react';
 import {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
+import Demo from './demo1.js';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './home.css';
 
 import PlaynowCard from './playnowcard.js'
@@ -43,6 +48,7 @@ export default function Home(props) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,8 +60,17 @@ export default function Home(props) {
 
   const handlelog = () => {
     props.onlog();
+    
   }
 
+
+  const handleOpen1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
 
   return (
     <div className='home-container'>
@@ -68,9 +83,11 @@ export default function Home(props) {
             </div>
           </Grid>
           <Grid container justify="center" spacing={0} className='cards-container'>
+          <Link to="/rules">
             <div><RulesCard /></div>
+            </Link>
             <div onClick={handleOpen}><PlaynowCard /></div>
-            <div><ResultsCard /></div>
+            <div  onClick={handleOpen1}><ResultsCard /></div>
           </Grid>
           <Grid container justify="center" spacing={0}>
             <h6 className='subtitle'>
@@ -102,6 +119,31 @@ export default function Home(props) {
           </div>
         </Fade>
       </Modal>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open1}
+        onClose={handleClose1}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        disableBackdropClick='true'
+        BackdropProps={{
+          timeout: 2000,
+        }}
+      >
+        <Fade in={open1}>
+          <div className='paper'>
+            <IconButton aria-label="delete" className={classes.close} onClick={handleClose1} size="large">
+              <CancelIcon fontSize="large" />
+            </IconButton>
+            <Demo />
+          </div>
+        </Fade>
+      </Modal>
+
+
     </div>
   );
 }
