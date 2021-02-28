@@ -10,7 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import Rules from './components/RulesPage/Rules';
-import PrivatePage from './components/PrivatePage';
+import PrivatePage from './components/PrivatePage'
 import { Redirect } from 'react-router';
 
 function App() {
