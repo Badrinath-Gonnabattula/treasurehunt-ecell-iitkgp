@@ -118,7 +118,7 @@ class EnhancedTableHead extends React.Component {
 
 const toolbarStyles = (theme) => ({
   root: {
-    paddingRight: theme.spacing.unit
+    paddingRight: theme.spacing.unit,
   },
   // highlight:
   //   theme.palette.type === "light"
@@ -411,15 +411,16 @@ class EnhancedTable extends React.Component {
     return (
       <MuiThemeProvider>
       
-      <h1>Leaderboard</h1>
-      <Card className={classes.root}>
+      
+      <Card className={classes.root} style={{maxHeight:10000,height:'619px'}}>
         {/* <SearchBar/> */}
+        <h1 style={{marginTop:10,marginBottom:10,paddingTop:0}}>Leaderboard</h1>
         <EnhancedTableToolbar 
         numSelected={selected.length}
           handleSearch={this.handleSearch}
           value={this.searchValue}
         />
-        <div className={classes.tableWrapper}>
+        <div className={classes.tableWrapper} style={{marginTop:80}}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             
             <EnhancedTableHead

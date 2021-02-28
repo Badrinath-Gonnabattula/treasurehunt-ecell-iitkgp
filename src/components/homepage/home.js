@@ -135,7 +135,7 @@ export default function Home(props) {
       >
         <Fade in={open1}>
           <div className='paper1'>
-            <IconButton aria-label="delete" className={classes.close} onClick={handleClose1} size="large">
+            <IconButton aria-label="delete" className={classes.close} onClick={handleClose1} size="large" style={{position:'absolute',right:0}}>
               <CancelIcon fontSize="large" />
             </IconButton>
             <Demo />
