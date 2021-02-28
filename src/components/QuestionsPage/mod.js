@@ -39,7 +39,6 @@ export default class App extends React.Component {
     axios.get('https://node.ecell-iitkgp.org/hunt/getSortedListOfAllParticipants/')
           .then(res=>{
             const data = res.data.details;
-            console.log(data);
             let allData = [];
             data.map((e,i)=>{
               if(e.name){

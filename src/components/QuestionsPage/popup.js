@@ -13,7 +13,7 @@ export default function Popup({ isOpen, children }) {
     leave: { transform: `scale(1.5)`, opacity: 0 },
     unique: true
   });
-  console.log(transitions);
+
   return (
     <div >
       <animated.div  style={props} />
