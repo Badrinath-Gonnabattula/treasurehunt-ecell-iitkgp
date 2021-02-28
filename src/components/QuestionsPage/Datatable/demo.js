@@ -294,78 +294,8 @@ class EnhancedTable extends React.Component {
       order: "asc",
       orderBy: "rank",
       selected: [],
-<<<<<<< Updated upstream
       data: data,
       filterData:data,
-||||||| constructed merge base
-      searchValue:"",
-      data: [
-        createData(1, "Data1", "akshat@g.com", 3.72),
-        createData(2, "Data2", "akshat@g.com", 3.723),
-        createData(3, "Data3", "akshat@g.com", 3.245),
-        createData(4, "Data4", "akshat@g.com", 3.2157),
-        createData(5, "Data5", "akshat@g.com", 3.2157),
-        createData(6, "Data6", "akshat@g.com", 312.7),
-        createData(7, "Data7", "akshat@g.com", 3245.7),
-        createData(8, "Data8", "akshat@g.com", 3125.7),
-        createData(9, "Data9", "akshat@g.com", 3.57),
-        createData(10, "Data0", "akshat@g.com", 31.7),
-        createData(11, "Data1", "akshat@g.com", 3.217),
-        createData(12, "Data2", "akshat@g.com", 3.527),
-        createData(13, "Data3", "akshat@g.com", 3.155217)
-      ],
-
-      filterData: [
-        createData(1, "Data1", "akshat@g.com", 3.72),
-        createData(2, "Data2", "akshat@g.com", 3.723),
-        createData(3, "Data3", "akshat@g.com", 3.245),
-        createData(4, "Data4", "akshat@g.com", 3.2157),
-        createData(5, "Data5", "akshat@g.com", 3.2157),
-        createData(6, "Data6", "akshat@g.com", 312.7),
-        createData(7, "Data7", "akshat@g.com", 3245.7),
-        createData(8, "Data8", "akshat@g.com", 3125.7),
-        createData(9, "Data9", "akshat@g.com", 3.57),
-        createData(10, "Data0", "akshat@g.com", 31.7),
-        createData(11, "Data1", "akshat@g.com", 3.217),
-        createData(12, "Data2", "akshat@g.com", 3.527),
-        createData(13, "Data3", "akshat@g.com", 3.155217)
-      ],
-
-=======
-      searchValue:"",
-      data: [
-        createData(1, "Data1", "a@g.com", 3.72),
-        createData(2, "Data2", "s@g.com", 3.723),
-        createData(3, "Data3", "d@g.com", 3.245),
-        createData(4, "Data4", "f@g.com", 3.2157),
-        createData(5, "Data5", "g@g.com", 3.2157),
-        createData(6, "Data6", "h@g.com", 312.7),
-        createData(7, "Data7", "j@g.com", 3245.7),
-        createData(8, "Data8", "k@g.com", 3125.7),
-        createData(9, "Data9", "m@g.com", 3.57),
-        createData(10, "Data0", "n@g.com", 31.7),
-        createData(11, "Data1", "b@g.com", 3.217),
-        createData(12, "Data2", "v@g.com", 3.527),
-        createData(13, "Data3", "c@g.com", 3.155217)
-      ],
-
-      filterData: [
-        createData(1, "Data1", "a@g.com", 3.72),
-        createData(2, "Data2", "s@g.com", 3.723),
-        createData(3, "Data3", "d@g.com", 3.245),
-        createData(4, "Data4", "f@g.com", 3.2157),
-        createData(5, "Data5", "g@g.com", 3.2157),
-        createData(6, "Data6", "h@g.com", 312.7),
-        createData(7, "Data7", "j@g.com", 3245.7),
-        createData(8, "Data8", "k@g.com", 3125.7),
-        createData(9, "Data9", "m@g.com", 3.57),
-        createData(10, "Data0", "n@g.com", 31.7),
-        createData(11, "Data1", "b@g.com", 3.217),
-        createData(12, "Data2", "v@g.com", 3.527),
-        createData(13, "Data3", "c@g.com", 3.155217)
-      ],
-
->>>>>>> Stashed changes
       page: 0,
       rowsPerPage: 10
     };
