@@ -5,7 +5,7 @@ import QuestionCard from './QuestionCard';
 import Congratulations from './Congratulations';
 import Mod from './mod.js'
 import '../../assets/leadmodal.css';
-
+import {Redirect} from 'react-router';
 import '../../assets/particleCss.css';
 import Completed from './Completed';
 
@@ -13,6 +13,7 @@ const axios = require('axios').default;
 var qid;
 
 const Questions = (props) =>{
+  const [success,setSuccess] = useState(false);
   console.log(props);
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
@@ -80,6 +81,7 @@ const Questions = (props) =>{
         ques_id: qid + 1,
         })
         .then(function (response) {
+          if(!success)
           setQuestion({
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
@@ -147,6 +149,12 @@ const Questions = (props) =>{
   }
 
   return (
+    <div>
+      {success?
+      <div>
+      <Redirect to='/'/>
+      </div>
+      :
     <div style={{height:'100%'}}>
       
         <Particles id="particles-js"
@@ -264,9 +272,10 @@ const Questions = (props) =>{
         {congrats}
         
     </div>
+}
+    </div>
     
 );
-}
+      }
 
 export default Questions;
-
