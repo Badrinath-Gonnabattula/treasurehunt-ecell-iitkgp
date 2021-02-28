@@ -290,6 +290,7 @@ class EnhancedTable extends React.Component {
       data[i] = createData(i+1,e.name,e.email,e.score);
     })
     this.state = {
+      filterData:data,
       order: "asc",
       orderBy: "rank",
       selected: [],
@@ -306,7 +307,7 @@ class EnhancedTable extends React.Component {
       data[i] = createData(i+1,e.name,e.email,e.score);
     })
     console.log(data);
-    this.setState({...this.state,data:data})
+    this.setState({...this.state,data:data,filterData:data})
   }
 
 
