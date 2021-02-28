@@ -178,7 +178,7 @@ let EnhancedTableToolbar = (props) => {
       
       <div>
             <TextField
-              placeholder="Search"
+              placeholder="Enter email id to search..."
               onChange={handleSearch}
               value={value}
             />
@@ -294,6 +294,7 @@ class EnhancedTable extends React.Component {
       orderBy: "rank",
       selected: [],
       data: data,
+      filterData:data,
       page: 0,
       rowsPerPage: 10
     };
@@ -364,7 +365,7 @@ class EnhancedTable extends React.Component {
   isSelected = (id) => this.state.selected.indexOf(id) !== -1;
 
   handleSearch = (event) => {
-    const { data } = this.state;
+    const  {data}  = this.state;
     let filteredDatas = [];
     filteredDatas = data.filter(e => {
       let mathesItems = Object.values(e);
@@ -402,7 +403,7 @@ class EnhancedTable extends React.Component {
           value={this.searchValue}
         />
         <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle">
+          <Table className={classes.table} aria-labelledby="tableTitle" stickyHeader>
             
             <EnhancedTableHead
               numSelected={selected.length}

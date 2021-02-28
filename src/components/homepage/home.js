@@ -123,7 +123,7 @@ export default function Home(props) {
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        className={classes.modal}
+        className={classes.modal1}
         open={open1}
         onClose={handleClose1}
         closeAfterTransition
@@ -134,7 +134,7 @@ export default function Home(props) {
         }}
       >
         <Fade in={open1}>
-          <div className='paper'>
+          <div className='paper1'>
             <IconButton aria-label="delete" className={classes.close} onClick={handleClose1} size="large">
               <CancelIcon fontSize="large" />
             </IconButton>

@@ -175,7 +175,7 @@ let EnhancedTableToolbar = (props) => {
         </Tooltip> */}
         {/* )} */}
       
-      <div>
+      {/* <div>
             <TextField
               placeholder="Search"
               onChange={handleSearch}
@@ -184,7 +184,7 @@ let EnhancedTableToolbar = (props) => {
             <IconButton aria-label="Filter list">
               <FilterListIcon />
             </IconButton>
-          </div>
+          </div> */}
           </div>
     </Toolbar>
   );
@@ -255,7 +255,7 @@ const CustomTablePagination = withStyles((theme) => ({
 const styles = (theme) => ({
   root: {
     width: "100%",
-    height:"50%",
+    height:"90%",
     maxHeight:500,
     // marginTop:"50px",
     // marginBottom:"50px",
@@ -411,7 +411,7 @@ class EnhancedTable extends React.Component {
     return (
       <MuiThemeProvider>
       
-     
+      <h1>Leaderboard</h1>
       <Card className={classes.root}>
         {/* <SearchBar/> */}
         <EnhancedTableToolbar 
