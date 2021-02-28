@@ -1,6 +1,6 @@
 {
   "name": "tressurehuntportal",
-  "homepage": "http://E-Cell-IIT-Kharagpur.github.io/TressureHunt",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

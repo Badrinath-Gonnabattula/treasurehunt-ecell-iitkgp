@@ -65,7 +65,7 @@ const Questions = (props) =>{
     axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
       ques_id: qid,
       answer: answer,
-      email: "ashish2829001@gmail.com",
+      email: props.email,
     })
     .then(function (response) {
       if(response.data.isCorrect) {
@@ -121,9 +121,10 @@ const Questions = (props) =>{
     //   hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
     // })
     axios.post('https://node.ecell-iitkgp.org/hunt/getqID', {
-      email: "ashish2829001@gmail.com",
+      email: props.email,
     })
     .then(function (response){
+      console.log(response);
       qid = response.data.details.curQuesID
     })
     .then(function (){
