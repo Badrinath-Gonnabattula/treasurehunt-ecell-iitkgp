@@ -9,12 +9,13 @@ import '../../assets/leadmodal.css';
 import '../../assets/particleCss.css';
 
 const axios = require('axios').default;
+var qid;
 
 const Questions = (props) =>{
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
-  const [qid, setQid] = useState(1);
+  
 
   // if (ques_id === 0){
   //   axios.post('https://node.ecell-iitkgp.org/getQuestion', {
@@ -40,7 +41,7 @@ const Questions = (props) =>{
     axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
       ques_id: qid,
       answer: answer,
-      email: props.email,
+      email: "ashish2829001@gmail.com",
     })
     .then(function (response) {
       
@@ -56,7 +57,8 @@ const Questions = (props) =>{
             questionbody: response.data.details.question,
             hint: response.data.details.hint,
           }, ()=> console.log(question));
-          setQid(qid + 1);
+          console.log(response);
+          qid = qid + 1;
         }).then(function (){
             //If correct answer hide the question window and show congrats!
             //Should be executed after getting correct answer from backend
@@ -134,7 +136,14 @@ const Questions = (props) =>{
     //   questionbody:"No matter where you reach in life, you’ll always remember your first. Even though Elon earned multi millions out of his first, he looks back at it with disappointment.",
     //   hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
     // })
-    axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
+    axios.post('https://node.ecell-iitkgp.org/hunt/getqID', {
+      email: "ashish2829001@gmail.com",
+    })
+    .then(function (response){
+      qid = response.data.details.curQuesID
+    })
+    .then(function (){
+      axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
       ques_id: qid,
     })
     .then(function (response) {
@@ -146,6 +155,11 @@ const Questions = (props) =>{
     .catch(function (error) {
       console.log(error);
     });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
   },[])
 
 
