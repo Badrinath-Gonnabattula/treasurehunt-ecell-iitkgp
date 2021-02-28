@@ -249,11 +249,11 @@ const CustomTablePagination = withStyles((theme) => ({
 const styles = (theme) => ({
   root: {
     width: "100%",
-    height:"60%",
-    maxHeight:700,
-    marginTop:"50px",
-    marginBottom:"50px",
-    margin: " auto",
+    height:"50%",
+    maxHeight:500,
+    // marginTop:"50px",
+    // marginBottom:"50px",
+    // margin: " auto",
     overflowY:'auto',
     overflowX: "auto",
     display:"block",

@@ -151,7 +151,7 @@ const Questions = () =>{
 
   return (
     <div style={{height:'100%'}}>
-      < Mod  />
+      
         <Particles id="particles-js"
           params = {{
             "particles": {
@@ -261,6 +261,7 @@ const Questions = () =>{
         >
          
         </Particles>
+        < Mod  />
         <QuestionCard question = {question} onSubmit = {onSubmit} />
         
         {congrats}
