@@ -56,11 +56,11 @@ export default function SignInForm(props) {
           const alertWindow = document.getElementsByClassName('WA')[0];
           // console.log(alertWindow);
           alertWindow.style.display = 'block';
-          document.getElementsByTagName('a')[0].style.marginTop = '20px';
+          document.getElementsByClassName('ATAG')[0].style.marginTop = '20px';
 
           setTimeout(()=>{
             alertWindow.style.display = 'none';
-            var aTag = document.getElementsByTagName('a')[0];
+            var aTag = document.getElementsByClassName('ATAG')[0];
             if(aTag){
               aTag.style.marginTop = '40px';
             }
@@ -94,7 +94,7 @@ export default function SignInForm(props) {
               User not found!
             </Alert>
         </div>
-        <a href="" onClick={handlelogin}>
+        <a href="" onClick={handlelogin} className = "ATAG">
           <span></span>
           <span></span>
           <span></span>
