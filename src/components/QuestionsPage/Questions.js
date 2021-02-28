@@ -3,6 +3,9 @@ import {useEffect,useState} from "react";
 import Particles from 'react-particles-js';
 import QuestionCard from './QuestionCard';
 import Congratulations from './Congratulations';
+import Mod from './mod.js'
+import '../../assets/leadmodal.css';
+
 import '../../assets/particleCss.css';
 
 const axios = require('axios').default;
@@ -148,6 +151,7 @@ const Questions = () =>{
 
   return (
     <div style={{height:'100%'}}>
+      
         <Particles id="particles-js"
           params = {{
             "particles": {
@@ -257,7 +261,9 @@ const Questions = () =>{
         >
          
         </Particles>
+        < Mod  />
         <QuestionCard question = {question} onSubmit = {onSubmit} />
+        
         {congrats}
         
     </div>

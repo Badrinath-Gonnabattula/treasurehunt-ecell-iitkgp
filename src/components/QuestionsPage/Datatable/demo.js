@@ -1,4 +1,5 @@
 import React from "react";
+import {useEffect,useState} from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -20,6 +21,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
+import SearchBar from "material-ui-search-bar";
 
 let counter = 0;
 function createData(rank, name, emailid, score) {
@@ -28,7 +30,8 @@ function createData(rank, name, emailid, score) {
 }
 
 const divStyle = {
-  overflowY:'scroll'
+  overflowY:'scroll',
+  zindex:100000000000
 };
 
 function getSorting(order, orderBy) {
@@ -60,7 +63,7 @@ class EnhancedTableHead extends React.Component {
   createSortHandler = (property) => (event) => {
     this.props.onRequestSort(event, property);
   };
-
+  // const [searched, setSearched] = useState<string>("");
   render() {
     const {
       onSelectAllClick,
@@ -72,7 +75,7 @@ class EnhancedTableHead extends React.Component {
 
     const CustomTableSortLabel = withStyles((theme) => ({
       active: {
-        color: "#011728" // typography.primaryTextColor
+        color: "#e9eef2" // typography.primaryTextColor
       }
     }))(TableSortLabel);
 
@@ -122,16 +125,16 @@ const toolbarStyles = (theme) => ({
   root: {
     paddingRight: theme.spacing.unit
   },
-  highlight:
-    theme.palette.type === "light"
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark
-        },
+  // highlight:
+  //   theme.palette.type === "light"
+  //     ? {
+  //         color: theme.palette.secondary.main,
+  //         backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+  //       }
+  //     : {
+  //         color: theme.palette.text.primary,
+  //         backgroundColor: theme.palette.secondary.dark
+  //       },
   spacer: {
     flex: "1 1 100%"
   },
@@ -196,14 +199,25 @@ const CustomTableCell = withStyles((theme) => ({
   head: {
     fontSize: 14, // cbpBody1
     fontWeight: 400,
-    color: "#5A6873" // typography.secondaryTextColor
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+
   },
   body: {
     fontSize: 16, // cbpBody3
     color: "#011728" // typography.primaryTextColor
   }
 }))(TableCell);
-
+// const requestSearch = (searchedVal: string) => {
+//   const filteredRows = originalRows.filter((row) => {
+//     return row.name.toLowerCase().includes(searchedVal.toLowerCase());
+//   });
+//   setRows(filteredRows);
+// };
+// const cancelSearch = () => {
+//   setSearched("");
+//   requestSearch(searched);
+// };
 const CustomTablePagination = withStyles((theme) => ({
   root: {
     "& span": {
@@ -219,7 +233,7 @@ const CustomTablePagination = withStyles((theme) => ({
   select: {
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, "Droid Sans", Ubuntu, "Helvetica Neue", Arial, sans-serif',
-    fontSize: 14,
+    fontSize: 0,
     color: "#5A6873", // typography.secondaryTextColor
     paddingRight: 24
   },
@@ -231,20 +245,30 @@ const CustomTablePagination = withStyles((theme) => ({
   }
 }))(TablePagination);
 
+
 const styles = (theme) => ({
   root: {
-    width: 848,
-    margin: "48px auto",
+    width: "100%",
+    height:"50%",
+    maxHeight:500,
+    // marginTop:"50px",
+    // marginBottom:"50px",
+    // margin: " auto",
     overflowY:'auto',
-    overflowX: "auto"
+    overflowX: "auto",
+    display:"block",
+    
+
   },
   table: {
     minWidth: 700,
+    maxheight:900,
+    overflowY:'auto',
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, "Droid Sans", Ubuntu, "Helvetica Neue", Arial, sans-serif'
   },
   row: {
-    height: "56px",
+    // height: "5%",
     "&:nth-of-type(odd)": {
       backgroundColor: "#F7F7F7" // beigeGray[200]
     }
@@ -275,7 +299,7 @@ class EnhancedTable extends React.Component {
         createData(13, "Data3", "akshat@g.com", 3.155217)
       ],
       page: 0,
-      rowsPerPage: 5
+      rowsPerPage: 10
     };
   }
 
@@ -336,10 +360,14 @@ class EnhancedTable extends React.Component {
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
+      
+     
       <Card className={classes.root}>
+        {/* <SearchBar/> */}
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
+            
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -347,8 +375,15 @@ class EnhancedTable extends React.Component {
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
-            />
-            <TableBody>
+              // customStyles={{backgroundColor: "black",
+              // color:"white"}}
+            // />
+            
+          //  value={searched}
+          //  onChange={(searchVal) => requestSearch(searchVal)}
+          //  onCancelSearch={() => cancelSearch()}
+          />
+            <TableBody >
               {data
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -386,7 +421,9 @@ class EnhancedTable extends React.Component {
         <CustomTablePagination
           component="div"
           count={data.length}
-          rowsPerPage={rowsPerPage}
+          rowsPerPage="10"
+          labelRowsPerPage="(Rows per page : 10)"
+          rowsPerPageOptions={[10]}
           page={page}
           backIconButtonProps={{
             "aria-label": "Previous Page"
@@ -395,7 +432,8 @@ class EnhancedTable extends React.Component {
             "aria-label": "Next Page"
           }}
           onChangePage={this.handleChangePage}
-          onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          // onChangeRowsPerPage={}
+          style={{zIndex:"auto"}}
         />
       </Card>
     );
