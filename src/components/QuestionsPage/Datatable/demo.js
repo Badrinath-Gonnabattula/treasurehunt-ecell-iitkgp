@@ -22,7 +22,8 @@ import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import SearchBar from "material-ui-search-bar";
-
+import TextField from "material-ui/TextField";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 let counter = 0;
 function createData(rank, name, emailid, score) {
   counter += 1;
@@ -63,6 +64,7 @@ class EnhancedTableHead extends React.Component {
   createSortHandler = (property) => (event) => {
     this.props.onRequestSort(event, property);
   };
+  
   // const [searched, setSearched] = useState<string>("");
   render() {
     const {
@@ -112,14 +114,7 @@ class EnhancedTableHead extends React.Component {
   }
 }
 
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired
-};
+
 
 const toolbarStyles = (theme) => ({
   root: {
@@ -147,7 +142,7 @@ const toolbarStyles = (theme) => ({
 });
 
 let EnhancedTableToolbar = (props) => {
-  const { numSelected, classes } = props;
+  const { numSelected, classes,value,handleSearch } = props;
 
   return (
     <Toolbar
@@ -155,8 +150,8 @@ let EnhancedTableToolbar = (props) => {
         [classes.highlight]: numSelected > 0
       })}
     >
-      {/* <div className={classes.title}>
-        {numSelected > 0 ? (
+      <div className={classes.title}>
+         {/*{numSelected > 0 ? (
           <Typography color="inherit" variant="subheading">
             {numSelected} selected
           </Typography>
@@ -164,8 +159,8 @@ let EnhancedTableToolbar = (props) => {
           <Typography variant="title" id="tableTitle">
             Nutrition
           </Typography>
-        )}
-      </div> */}
+        )}*/}
+      </div> 
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {/* {numSelected > 0 ? ( */}
@@ -179,7 +174,18 @@ let EnhancedTableToolbar = (props) => {
           <IconButton aria-label="Filter list" />
         </Tooltip> */}
         {/* )} */}
-      </div>
+      
+      <div>
+            <TextField
+              placeholder="Search"
+              onChange={handleSearch}
+              value={value}
+            />
+            <IconButton aria-label="Filter list">
+              <FilterListIcon />
+            </IconButton>
+          </div>
+          </div>
     </Toolbar>
   );
 };
@@ -190,7 +196,7 @@ EnhancedTableToolbar.propTypes = {
 };
 
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
-
+//
 const CustomTableCell = withStyles((theme) => ({
   root: {
     borderBottom: "1px solid #E0E3E5", // textColors.borderLight
@@ -283,6 +289,7 @@ class EnhancedTable extends React.Component {
       order: "asc",
       orderBy: "rank",
       selected: [],
+      searchValue:"",
       data: [
         createData(1, "Data1", "akshat@g.com", 3.72),
         createData(2, "Data2", "akshat@g.com", 3.723),
@@ -298,6 +305,23 @@ class EnhancedTable extends React.Component {
         createData(12, "Data2", "akshat@g.com", 3.527),
         createData(13, "Data3", "akshat@g.com", 3.155217)
       ],
+
+      filterData: [
+        createData(1, "Data1", "akshat@g.com", 3.72),
+        createData(2, "Data2", "akshat@g.com", 3.723),
+        createData(3, "Data3", "akshat@g.com", 3.245),
+        createData(4, "Data4", "akshat@g.com", 3.2157),
+        createData(5, "Data5", "akshat@g.com", 3.2157),
+        createData(6, "Data6", "akshat@g.com", 312.7),
+        createData(7, "Data7", "akshat@g.com", 3245.7),
+        createData(8, "Data8", "akshat@g.com", 3125.7),
+        createData(9, "Data9", "akshat@g.com", 3.57),
+        createData(10, "Data0", "akshat@g.com", 31.7),
+        createData(11, "Data1", "akshat@g.com", 3.217),
+        createData(12, "Data2", "akshat@g.com", 3.527),
+        createData(13, "Data3", "akshat@g.com", 3.155217)
+      ],
+
       page: 0,
       rowsPerPage: 10
     };
@@ -311,12 +335,16 @@ class EnhancedTable extends React.Component {
       order = "asc";
     }
 
-    this.setState({ order, orderBy });
+    const filterData = this.state.filterData.sort((a, b) =>
+      order === "desc" ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]
+    );
+
+    this.setState({filterData, order, orderBy });
   };
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      this.setState((state) => ({ selected: state.data.map((n) => n.id) }));
+      this.setState((state) => ({ selected: state.filterData.map((n) => n.id) }));
       return;
     }
     this.setState({ selected: [] });
@@ -353,18 +381,44 @@ class EnhancedTable extends React.Component {
 
   isSelected = (id) => this.state.selected.indexOf(id) !== -1;
 
+  handleSearch = (event) => {
+    const { data } = this.state;
+    let filteredDatas = [];
+    filteredDatas = data.filter(e => {
+      let mathesItems = Object.values(e);
+      let retVal = true;
+      mathesItems.forEach(e => {
+        const regex = new RegExp(event.target.value, "gi");
+        if (typeof e == "string") retVal = e.match(regex);
+      });
+      return retVal;
+    });
+    this.setState({
+      filterData: filteredDatas,
+      searchValue: event.target.value
+    });
+  };
+
+
+
+
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { filterData, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows =
-      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+      rowsPerPage - Math.min(rowsPerPage, filterData.length - page * rowsPerPage);
 
     return (
+      <MuiThemeProvider>
       
      
       <Card className={classes.root}>
         {/* <SearchBar/> */}
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar 
+        numSelected={selected.length}
+          handleSearch={this.handleSearch}
+          value={this.searchValue}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             
@@ -374,7 +428,7 @@ class EnhancedTable extends React.Component {
               orderBy={orderBy}
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
-              rowCount={data.length}
+              rowCount={filterData.length}
               // customStyles={{backgroundColor: "black",
               // color:"white"}}
             // />
@@ -384,7 +438,7 @@ class EnhancedTable extends React.Component {
           //  onCancelSearch={() => cancelSearch()}
           />
             <TableBody >
-              {data
+              {filterData
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((n) => {
@@ -420,7 +474,7 @@ class EnhancedTable extends React.Component {
         </div>
         <CustomTablePagination
           component="div"
-          count={data.length}
+          count={filterData.length}
           rowsPerPage="10"
           labelRowsPerPage="(Rows per page : 10)"
           rowsPerPageOptions={[10]}
@@ -436,6 +490,7 @@ class EnhancedTable extends React.Component {
           style={{zIndex:"auto"}}
         />
       </Card>
+      </MuiThemeProvider>
     );
   }
 }

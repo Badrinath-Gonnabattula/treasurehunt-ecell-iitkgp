@@ -19,6 +19,7 @@
     "gsap": "^3.6.0",
     "install": "^0.13.0",
     "loadash": "^1.0.0",
+    "material-ui": "^0.20.2",
     "material-ui-search-bar": "^1.0.0",
     "prop-types": "latest",
     "react": "^17.0.1",
