@@ -140,7 +140,7 @@ export default function Home(props) {
             <IconButton aria-label="delete" className={classes.close} onClick={handleClose} size="large">
               <CancelIcon fontSize="large" />
             </IconButton>
-            <SignInForm onlog={handlelog} />
+            <SignInForm onlog={handlelog}/>
           </div>
         </Fade>
       </Modal>

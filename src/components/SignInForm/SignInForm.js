@@ -20,7 +20,7 @@ const axios = require('axios');
 
 export default function SignInForm(props) {
   // const classes = useStyles();
-
+  console.log(props);
   const [userinfo,setUserinfo] = useState({"name":'',"email":'',"password":'',"loggedin":false,"details":null});
 
   const handlename = (e) => {
@@ -35,6 +35,7 @@ export default function SignInForm(props) {
     setUserinfo({...userinfo,"password":e.target.value});
   }
 
+  const [success,setSuccess] = useState(false);
   const handlelogin = (e) => {
     e.preventDefault();
     console.log(userinfo);
@@ -45,11 +46,11 @@ export default function SignInForm(props) {
         console.log(response.data);
         if(response.data.success){
           console.log("sad");
-          props.onlog();
+          // props.onlog();
 
           let obj = response.data;
           sessionStorage.setItem('userdata',JSON.stringify(obj));
-          
+          setSuccess(true);
         }
         else{
           console.log("err");
@@ -70,38 +71,44 @@ export default function SignInForm(props) {
       .catch((error) => {
       })
   }
-
+  console.log(success);
   return (
-    <div class="login-box">
-      <h2>Login</h2>
-      <form action="">
-        <div class="user-box">
-          <input type="text" name="" required="" onChange={handlename} value={userinfo.name}></input>
-          
-          <label>Name</label>
-        </div>
-
-        <div class="user-box">
-          <input type="text" onChange={handleemail} value={userinfo.email}></input>
-          <label for="">Email</label>
-        </div>
-        <div class="user-box">
-          <input type="password" onChange={handlepassword} value={userinfo.password}></input>
-          <label for="">Password</label>
-        </div>
-        <div className='WA'>
-            <Alert severity="error" style={{marginBottom:0}}>
-              User not found!
-            </Alert>
-        </div>
-        <a href="" onClick={handlelogin} className = "ATAG">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          SIGN IN
-        </a>
-      </form>
-  </div>
+    <div>
+      {success?
+      <Redirect to='/play'/>
+      :
+        <div class="login-box">
+        <h2>Login</h2>
+        <form action="">
+          <div class="user-box">
+            <input type="text" name="" required="" onChange={handlename} value={userinfo.name}></input>
+            
+            <label>Name</label>
+          </div>
+  
+          <div class="user-box">
+            <input type="text" onChange={handleemail} value={userinfo.email}></input>
+            <label for="">Email</label>
+          </div>
+          <div class="user-box">
+            <input type="password" onChange={handlepassword} value={userinfo.password}></input>
+            <label for="">Password</label>
+          </div>
+          <div className='WA'>
+              <Alert severity="error" style={{marginBottom:0}}>
+                User not found!
+              </Alert>
+          </div>
+          <a href="" onClick={handlelogin} className = "ATAG">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            SIGN IN
+          </a>
+        </form>
+    </div>
+      }
+    </div>
   );
 }
