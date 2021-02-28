@@ -14,7 +14,6 @@ import Rules from './components/RulesPage/Rules';
 import { Redirect } from 'react-router';
 
 function App() {
-
   const [loggedin,setLoggedin] = React.useState(false);
 
   const [userdata,setUserdata] = React.useState(null);
