@@ -49,7 +49,7 @@ export default function Home(props) {
 
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
-
+  const [data,setData] = React.useState([]);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -72,6 +72,31 @@ export default function Home(props) {
     setOpen1(false);
   };
 
+  const fetchData = () =>{
+    axios.get('https://node.ecell-iitkgp.org/hunt/getSortedListOfAllParticipants/')
+          .then(res=>{
+            const data = res.data.details;
+            console.log(data);
+            let allData = [];
+            data.map((e,i)=>{
+              if(e.name){
+                allData[i] = {
+                  name:e.name,
+                  email:e.email,
+                  score:e.score
+                } 
+              }
+              else{
+                allData[i] = {
+                  name:e.name_iit,
+                  email:e.email_iit,
+                  score:e.score
+                } 
+              }
+            })
+            setData(allData);
+          })
+  }
   return (
     <div className='home-container'>
       
@@ -87,7 +112,7 @@ export default function Home(props) {
             <div><RulesCard /></div>
             </Link>
             <div onClick={handleOpen}><PlaynowCard /></div>
-            <div  onClick={handleOpen1}><ResultsCard /></div>
+            <div  onClick={()=>{fetchData(); handleOpen1();}}><ResultsCard /></div>
           </Grid>
           <Grid container justify="center" spacing={0}>
             <h6 className='subtitle'>
@@ -138,7 +163,7 @@ export default function Home(props) {
             <IconButton aria-label="delete" className={classes.close} onClick={handleClose1} size="large" style={{position:'absolute',right:0}}>
               <CancelIcon fontSize="large" />
             </IconButton>
-            <Demo />
+            <Demo data = {data}/>
           </div>
         </Fade>
       </Modal>
