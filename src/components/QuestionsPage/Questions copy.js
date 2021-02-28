@@ -5,16 +5,13 @@ import QuestionCard from './QuestionCard';
 import Congratulations from './Congratulations';
 import Mod from './mod.js'
 import '../../assets/leadmodal.css';
-import {Redirect} from 'react-router';
+
 import '../../assets/particleCss.css';
-import Completed from './Completed';
 
 const axios = require('axios').default;
 var qid;
 
 const Questions = (props) =>{
-  const [success,setSuccess] = useState(false);
-  console.log(props);
   const [question,setQuestion] = useState({questionbody:"",hint:[]});
   const [correct,setCorrect] = useState(false);
   const [congrats,setCongrats] = useState(null);
@@ -37,7 +34,29 @@ const Questions = (props) =>{
   //   });
   // }
 
-  const animation = () =>{
+  
+  const onSubmit = (e,answer) =>{
+    //Handle API calls
+    console.log(props.email);
+    var corr = false;
+    axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
+      ques_id: qid,
+      answer: answer,
+      email: "ashish2829001@gmail.com",
+    })
+    .then(function (response) {
+      if(response.data.isCorrect) {
+
+        axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
+        ques_id: qid + 1,
+        })
+        .then(function (response) {
+          setQuestion({
+            questionbody: response.data.details.question,
+            hint: response.data.details.hint,
+          }, ()=> console.log(question));
+          qid = qid + 1;
+        }).then(function (){
             //If correct answer hide the question window and show congrats!
             //Should be executed after getting correct answer from backend
             let particleWindow = document.getElementById('particles-js');
@@ -56,37 +75,6 @@ const Questions = (props) =>{
               questioncard[0].style.display = 'block';
               setCorrect(true);
             },4500);
-  }
-  const onSubmit = (e,answer) =>{
-    //Handle API calls
-    if(qid>10){
-      let particleWindow = document.getElementById('particles-js');
-      let questioncard = document.getElementsByClassName('main');
-      setCorrect(true);
-      setCongrats(<Completed/>);
-      particleWindow.style.display = 'none';
-      questioncard[0].style.display = 'none';
-    }
-    console.log(props.email);
-    var corr = false;
-    axios.post('https://node.ecell-iitkgp.org/hunt/isCorrect', {
-      ques_id: qid,
-      answer: answer,
-      email: props.email,
-    })
-    .then(function (response) {
-      if(response.data.isCorrect) {
-        animation();
-        axios.post('https://node.ecell-iitkgp.org/hunt/getQuestion', {
-        ques_id: qid + 1,
-        })
-        .then(function (response) {
-          if(!success)
-          setQuestion({
-            questionbody: response.data.details.question,
-            hint: response.data.details.hint,
-          }, ()=> console.log(question));
-          qid = qid + 1;
         })
         .catch(function (error) {
           console.log(error);
@@ -119,10 +107,9 @@ const Questions = (props) =>{
     //   hint:"https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
     // })
     axios.post('https://node.ecell-iitkgp.org/hunt/getqID', {
-      email: props.email,
+      email: "ashish2829001@gmail.com",
     })
     .then(function (response){
-      console.log(response);
       qid = response.data.details.curQuesID
     })
     .then(function (){
@@ -145,17 +132,8 @@ const Questions = (props) =>{
     
   },[])
 
-  if(props.QID>10){
-    return <Completed/>;
-  }
 
   return (
-    <div>
-      {success?
-      <div>
-      <Redirect to='/'/>
-      </div>
-      :
     <div style={{height:'100%'}}>
       
         <Particles id="particles-js"
@@ -273,10 +251,9 @@ const Questions = (props) =>{
         {congrats}
         
     </div>
-}
-    </div>
     
 );
-      }
+}
 
 export default Questions;
+
